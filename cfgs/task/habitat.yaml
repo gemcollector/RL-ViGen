@@ -1,0 +1,7 @@
+defaults:
+  - easy
+  - _self_
+
+task_name: habitat
+batch_size: 512
+nstep: 1

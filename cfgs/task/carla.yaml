@@ -1,0 +1,6 @@
+defaults:
+  - easy
+  - _self_
+
+task_name: carla
+stddev_schedule: 0.2

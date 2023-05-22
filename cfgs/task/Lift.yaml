@@ -1,0 +1,6 @@
+defaults:
+  - medium
+  - _self_
+
+task_name: Lift
+feature_dim: 50

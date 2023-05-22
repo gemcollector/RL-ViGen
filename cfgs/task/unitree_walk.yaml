@@ -1,0 +1,7 @@
+defaults:
+  - medium
+  - _self_
+
+task_name: unitree_walk
+nstep: 3
+batch_size: 256

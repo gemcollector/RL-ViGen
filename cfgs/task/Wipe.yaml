@@ -1,0 +1,7 @@
+defaults:
+  - easy
+  - _self_
+
+task_name: Wipe
+feature_dim: 50
+render_camera: sideview

@@ -1,0 +1,26 @@
+ip: localhost
+port: 2042
+max_episode_steps: 1000
+frame_skip: 2
+render_display: 0  # 0, 1
+display_text: 0  # 0, 1
+record_display_images: 0  # 0, 1
+record_rl_images: 0  # 0, 1
+rl_image_size: 84
+fov: 60  # degrees for rl camera
+
+cameras:  #  - foresight0 - foresight1 - foresight2 - backsight - side - above
+#  - foresight0
+#  - foresight1
+#  - foresight2
+#  - backsight
+#  - side
+  - above
+map: Town04  # 1 to 5
+weather: ClearNoon  # ClearNoon
+changing_weather_speed: 0.1  # [0, 1]
+vehicle: vehicle.audi.a2  # random vehicle.audi.a2 vehicle.audi.tt vehicle.lincoln.mkz2017 vehicle.nissan.patrol ... vehicle.jeep.wrangler_rubicon vehicle.mini.cooperst vehicle.bmw.grandtourer
+# start_lane: 3
+vehicle_spawn_point_id: random  # random or 0 to 100+
+num_other_cars: 30  # recommend 0 to 100
+num_other_cars_nearby: 10

@@ -1,9 +1,9 @@
 
 
-# GIRL: A Generalization Visual Reinforcement Learning Benchmark
+# RL-ViGen: A Reinforcement Learning Benchmark for visual generalization
 [Website](https:///gemcollector.github.io/gvrlb/) | [Paper]
 
-We have released GIRL -- a **G**eneralizable v**I**sual **R**einforcement **L**earning Benchmark. It specifically specifically designs to tackle the visual generalization problem.
+We have released RL-ViGen -- a **R**einforcement **L**earning Benchmark for **Vi**sual **Gen**eralization. It specifically specifically designs to tackle the visual generalization problem.
 Our benchmark comprises five major task categories, namely, manipulation, navigation, autonomous driving, locomotion, and dexterous manipulation. Concurrently, it encompasses five classes of generalization types: visual appearances, camera views, lighting changes, scene structures, and cross-embodiments. Furthermore, GIRL integrates seven of the most currently favored visual RL and generalization algorithms, solidifying its broad applicability in the field.
 
 

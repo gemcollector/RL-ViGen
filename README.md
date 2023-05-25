@@ -121,6 +121,7 @@ bash install_adroit.sh
 - `setup`: the installation scripts for conda envs.
 - `third_party`: submodules from third parties. We won't frequently change the code in this folder.
 - `wrappers`: includes the wrappers for each environment.
+- `scripts`: includes scripts that facilitate training and evaluation. 
 
 
 ## Training

@@ -8,7 +8,10 @@ warnings.filterwarnings('ignore', category=DeprecationWarning)
 import os
 os.environ['MKL_SERVICE_FORCE_INTEL'] = '1'
 os.environ['MUJOCO_GL'] = 'egl'
-import quaternion
+try:
+    import quaternion
+except:
+    pass
 from pathlib import Path
 
 import hydra

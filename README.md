@@ -114,6 +114,15 @@ bash install_adroit.sh
 ``` -->
 
 
+## Code Structure
+- `algos`: contains the implementation of different algorithms.
+- `cfgs`: contains the hyper-parameters for different algorithms and each tasks.
+- `envs`: various RL-ViGen benchmark environments. In addtion, each sub-folder contains specific `README.md` for the introduction of the environment.
+- `setup`: the installation scripts for conda envs.
+- `third_party`: submodules from third parties. We won't frequently change the code in this folder.
+- `wrappers`: includes the wrappers for each environment.
+
+
 ## Training
 
 <!-- ### CARLA
@@ -150,6 +159,9 @@ bash locoeval.sh
 ```
 
 For more details, please refer to the `README.md` files for each environment in the `env/` directory.
+
+## Change Log
+* **[06-01-2023]** Initial code release.
 
 
 ## Acknowledgements

@@ -140,23 +140,27 @@ LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libffi.so.7 bash carlatrain.sh
 
 ### Habitat, Robosuite, Locomotion
 ```
-bash train.sh
+cd RL-ViGen/
+bash scripts/train.sh
 ```
 ### CARLA
 ```
-bash carlatrain.sh
+cd RL-ViGen/
+bash scripts/carlatrain.sh
 ```
 
 ## Evaluation
 For `Robosuite` , `Habitat`, and `CARLA`, we can run the evaluation code as follow:
 ```
-bash eval.sh 
+cd RL-ViGen/
+bash scripts/eval.sh 
 ```
 You should change the `env`, `task_name`, `test_agent` for different evaluation in the `eval.sh`.
 
 For `DM-Control`, we can run the evaluation code as follow:
 ```
-bash locoeval.sh
+cd RL-ViGen/
+bash scripts/locoeval.sh
 ```
 
 For more details, please refer to the `README.md` files for each environment in the `env/` directory.

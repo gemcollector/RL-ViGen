@@ -1,0 +1,26 @@
+seed: 43
+appearance_id: original  # original, 0~9
+scene_id: 0  # 0, 1
+image_height: 84
+image_width: 84
+#scene_structure:   # original easy hard  # TODO no need?
+light:
+  position: original  # original easy hard
+  intensity: original  # original easy hard
+  color: original  # original easy hard
+
+camera:
+  position: original  # original easy hard
+  orientation: original  # original easy hard
+  hfov: original  # original easy hard
+
+dynamics:  # TODO how to check if the change is applied
+  gravity: original  # original easy hard
+  friction_coefficient: original  # original easy hard
+  restitution_coefficient: original  # original easy hard
+
+#cross_embodiment:   # ???
+
+
+defaults:
+  - setting: setting

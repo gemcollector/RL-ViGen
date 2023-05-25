@@ -1,0 +1,107 @@
+channel_first: true
+image_height: 84
+image_width: 84
+task_def:
+  env_name: Door  # single arm tasks: Door, Lift, NutAssembly, NutAssemblyRound, NutAssemblySingle, NutAssemblySquare, PickPlace,
+                  #                   PickPlaceBread, PickPlaceCan, PickPlaceCereal, PickPlaceMilk, PickPlaceSingle, Stack, Wipe
+                  # two arms tasks: TwoArmHandover, TwoArmLift, TwoArmPegInHole
+  robots: Panda  # IIWA, Jaco, Kinova3, Panda, Sawyer, UR5e
+#  robots:        # For two arms tasks, this should be a list. And if {env_configuration} is bimanual, {robots} will be set to the default Baxter
+#    - Panda
+#    - Panda
+
+  controller_configs: OSC_POSE  # JOINT_VELOCITY, JOINT_TORQUE, JOINT_POSITION, OSC_POSITION, OSC_POSE, IK_POSE
+  camera_names: agentview
+  camera_heights: ${image_height}
+  camera_widths: ${image_width}
+  camera_depths: false
+  reward_shaping: true
+  has_renderer: false
+#  has_offscreen_renderer: true
+  ignore_done: false
+  control_freq: 20
+  hard_reset: false
+  horizon: 500
+obs_modality:
+  - rgb
+#  - state
+
+
+mode: train  # train, eval-easy, eval-hard, eval-extreme  (for texture?)
+scene_id: 0   # 0~9 (for texture?)
+seed: 6
+moving_light: false
+video_background: false
+
+except_robot: true
+
+color:
+  geom_names:   # all geoms are randomized
+  randomize_local: true  # sample nearby colors
+  randomize_material: false  # randomize material reflectance / shininess / specular
+  local_rgb_interpolation: 0.2
+  local_material_interpolation: 0.3
+  texture_variations:
+    - rgb
+    - checker
+    - noise
+    - gradient  # all texture variation types
+  randomize_skybox: true  # by default, randomize skybox too
+
+camera:
+  camera_names:   # all cameras are randomized
+  randomize_position: false
+  randomize_rotation: false
+  randomize_fovy: false
+  position_perturbation_size: 0.1
+  rotation_perturbation_size: 0.2
+  fovy_perturbation_size: 20.0
+
+light:
+  light_names:   # all lights are randomized
+  randomize_position: false
+  randomize_direction: false
+  randomize_specular: false
+  randomize_ambient: false
+  randomize_diffuse: false
+  randomize_active: false
+  position_perturbation_size: 100
+  direction_perturbation_size: 50
+  specular_perturbation_size: 0.3
+  ambient_perturbation_size: 0.3
+  diffuse_perturbation_size: 0.3
+
+dynamic:
+  # Opt parameters
+  randomize_density: false
+  randomize_viscosity: false
+  density_perturbation_ratio: 0.1
+  viscosity_perturbation_ratio: 0.1
+  # Body parameters
+  body_names:   # all bodies randomized
+  randomize_position: false
+  randomize_quaternion: false
+  randomize_inertia: false
+  randomize_mass: false
+  position_perturbation_size: 0.0015
+  quaternion_perturbation_size: 0.003
+  inertia_perturbation_ratio: 0.02
+  mass_perturbation_ratio: 0.02
+  # Geom parameters
+  geom_names:   # all geoms randomized
+  randomize_friction: false
+  randomize_solref: false
+  randomize_solimp: false
+  friction_perturbation_ratio: 0.1
+  solref_perturbation_ratio: 0.1
+  solimp_perturbation_ratio: 0.1
+  # Joint parameters
+  joint_names:   # all joints randomized
+  randomize_stiffness: false
+  randomize_frictionloss: false
+  randomize_damping: false
+  randomize_armature: false
+  stiffness_perturbation_ratio: 0.1
+  frictionloss_perturbation_size: 0.05
+  damping_perturbation_size: 0.01
+  armature_perturbation_size: 0.01

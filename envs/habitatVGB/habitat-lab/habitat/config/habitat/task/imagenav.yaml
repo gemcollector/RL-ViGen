@@ -1,0 +1,24 @@
+# @package habitat.task
+
+defaults:
+  - task_config_base
+  - actions:
+#      - stop
+#      - move_forward
+#      - turn_left
+#      - turn_right
+      - velocity_control
+  - measurements:
+      - distance_to_goal
+      - success
+      - spl
+      - distance_to_goal_reward
+      - top_down_map
+  - lab_sensors:
+      - imagegoal_sensor
+  - _self_
+
+type: Nav-v0
+end_on_success: True
+reward_measure: "distance_to_goal_reward"
+success_measure: "spl"

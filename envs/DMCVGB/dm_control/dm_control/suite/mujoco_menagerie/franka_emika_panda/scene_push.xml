@@ -1,0 +1,73 @@
+<mujoco model="panda scene">
+  <include file="../../common/skybox.xml"/>
+  <include file="../../common/visual.xml"/>
+  <include file="../../common/materials.xml"/>
+  <include file="panda_push.xml"/>
+
+  <statistic center="0.3 0 0.4" extent="1"/>
+
+<!--  <visual>-->
+<!--    <headlight diffuse="0.6 0.6 0.6"  ambient="0.3 0.3 0.3" specular="0 0 0"/>-->
+<!--    <rgba haze="0.15 0.25 0.35 1"/>-->
+<!--    <global azimuth="120" elevation="-20"/>-->
+<!--  </visual>-->
+
+  <asset>
+<!--    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512"-->
+<!--        height="3072"/>-->
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4"
+        rgb2="0.1 0.2 0.3" markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5"
+        reflectance="0.2"/>
+    <material name="table_mat" texture="table_original" />
+    <texture type="cube" name="table_original" file="marble.png" />
+    <texture type="cube" name="table_easy0" file="marble2.png" />
+    <texture type="cube" name="table_easy1" file="metal2.png" />
+    <texture type="cube" name="table_easy2" file="metal1.png" />
+    <texture type="cube" name="table_easy3" file="skin.png" />
+    <texture type="cube" name="table_easy4" file="light_wood_v2.png" />
+    <texture type="cube" name="table_easy5" file="wood1.png" />
+    <texture type="cube" name="table_easy6" file="woodb.png" />
+    <texture type="cube" name="table_easy7" file="floor1.png" />
+    <texture type="cube" name="table_easy8" file="granite.png" />
+    <texture type="cube" name="table_easy9" file="metal.png" />
+    <texture type="cube" name="table_hard0" file="city1.png" />
+    <texture type="cube" name="table_hard1" file="city2.png" />
+    <texture type="cube" name="table_hard2" file="city3.png" />
+    <texture type="cube" name="table_hard3" file="foil.png" />
+    <texture type="cube" name="table_hard4" file="silverRaw.png" />
+    <texture type="cube" name="table_hard5" file="square.png" />
+    <texture type="cube" name="table_hard6" file="darkwood.png" />
+    <texture type="cube" name="table_hard7" file="brick1.png" />
+    <texture type="cube" name="table_hard8" file="tennis.png" />
+    <texture type="cube" name="table_hard9" file="wood4.png" />
+  </asset>
+
+  <worldbody>
+      <light name='original' directional='false' diffuse='.1 .1 .1' specular='0.03 0.03 0.03' pos='1 -1.0 4.0' />
+
+<!--    <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>-->
+<!--    <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>-->
+    <geom name="floor" size="2 2 0.05" type="plane" material="grid"/>
+<!--    <camera name="fixed" pos="1.2 -1.2 1.35" euler="1 0.6 0.35"/>-->
+
+    <!-- ======= push ======= -->
+    <body name="table" pos="0.4 0 0">
+<!--      <geom pos="0 0 -0.01" size="0.6 0.6 0.02" type="box" material="table_mat"/>-->
+        <geom pos="0 0 -0.01" size="0.6 0.6 0.02" type="box"  rgba=".7 .7 .7 1." material="table_mat"/>
+
+      <camera name="side_table" pos="0 -1.3 0.9" euler="1.2 0 0"/>
+      <camera name="side_table1" pos="0 -1.3 0.9" euler="1.2 0 0"/>
+    </body> 
+
+    <body name="object_box" pos="0.44 0.0 0.04">
+      <freejoint/>
+      <geom pos="0 0 0" size="0.032 0.032 0.032" type="box" rgba="1 0 0 1" material="obj_color"/>
+      <site name="target_ball" pos="0 0 0" size="0.01" rgba="0 1 0 0.5" />
+    </body>
+
+    <site name="target_box" type="box" pos="0.74 0.0 0.04" size="0.032 0.032 0.032" rgba="0 0 1 0.3" />
+
+  </worldbody>
+
+</mujoco>

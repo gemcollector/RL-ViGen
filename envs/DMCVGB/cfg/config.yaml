@@ -1,0 +1,24 @@
+taskdef:
+  domain_name: unitree
+  task_name: walk
+seed: 1
+episode_length: 1000
+frame_stack: 3
+action_repeat: 2
+image_size: 84
+#mode: video_easy #train  # color_hard
+is_distracting_cs: false
+intensity: 0
+
+cam_id: 0
+cam_pos: original   # original easy hard
+
+background:
+  type: original  # original color video
+  difficulty: hard  # easy hard
+light_position: original  # original easy hard
+light_color: original  # original easy hard
+moving_light: original  # original easy hard
+
+objects_color: original  # original easy hard
+table_texture: original  # original easy hard （for franka）

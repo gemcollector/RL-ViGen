@@ -1,0 +1,54 @@
+<mujoco model="a1 scene">
+  <include file="../../common/skybox.xml"/>
+  <include file="../../common/visual.xml"/>
+  <include file="../../common/materials.xml"/>
+  <include file="a1_walk.xml"/>
+
+  <statistic center="0 0 0.1" extent="0.8"/>
+
+<!--  <visual>-->
+<!--    <headlight diffuse="0.6 0.6 0.6"  ambient="0.3 0.3 0.3" specular="0 0 0"/>-->
+<!--    <rgba haze="0.15 0.25 0.35 1"/>-->
+<!--    <global azimuth="120" elevation="-20"/>-->
+<!--  </visual>-->
+
+  <asset>
+<!--    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512"-->
+<!--        height="3072"/>-->
+      <texture type="cube" name="table_easy0" file="marble2.png" />
+    <texture type="cube" name="table_easy1" file="metal2.png" />
+    <texture type="cube" name="table_easy2" file="metal1.png" />
+    <texture type="cube" name="table_easy3" file="skin.png" />
+    <texture type="cube" name="table_easy4" file="light_wood_v2.png" />
+    <texture type="cube" name="table_easy5" file="wood1.png" />
+    <texture type="cube" name="table_easy6" file="woodb.png" />
+    <texture type="cube" name="table_easy7" file="floor1.png" />
+    <texture type="cube" name="table_easy8" file="granite.png" />
+    <texture type="cube" name="table_easy9" file="metal.png" />
+    <texture type="cube" name="table_hard0" file="city1.png" />
+    <texture type="cube" name="table_hard1" file="city2.png" />
+    <texture type="cube" name="table_hard2" file="city3.png" />
+    <texture type="cube" name="table_hard3" file="foil.png" />
+    <texture type="cube" name="table_hard4" file="silverRaw.png" />
+    <texture type="cube" name="table_hard5" file="square.png" />
+    <texture type="cube" name="table_hard6" file="darkwood.png" />
+    <texture type="cube" name="table_hard7" file="brick1.png" />
+    <texture type="cube" name="table_hard8" file="tennis.png" />
+    <texture type="cube" name="table_hard9" file="wood4.png" />
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4"
+        rgb2="0.1 0.2 0.3" markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5"
+        reflectance="0.2"/>
+  </asset>
+
+  <worldbody>
+<!--    <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>-->
+    <light name='original' directional='false' diffuse='.7 .7 .7' specular='0.03 0.03 0.03' pos='-1 -1.0 4.0' dir='1 1.0 -4'/>
+    <!-- <camera name="y"  pos="0 2.5 1.5" xyaxes="-1 0 0 0 -.5 1" mode="trackcom"/> -->
+    <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
+<!--    <geom name="floor" size="0 0 0.05" type="plane" material="grid"/>-->
+<!--    <geom name="floor" type="plane" conaffinity="1" pos="48 0 0" size="50 1 .2" material="grid"/>-->
+<!--    <geom name="floor" type="plane" conaffinity="1" pos="248 0 0" size="250 .8 .2" material="grid" zaxis="0 0 1"/>-->
+  </worldbody>
+
+</mujoco>

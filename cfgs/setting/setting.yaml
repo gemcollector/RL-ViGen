@@ -1,5 +1,5 @@
 weather:
-  custom_hard_high_light:
+  hard_high_light:
     cloudiness: 0
     precipitation: 0
     precipitation_deposits: 0
@@ -9,7 +9,7 @@ weather:
     wetness: 0
     sun_azimuth_angle: 0
     sun_altitude_angle: 90
-  custom_soft_high_light:
+  soft_high_light:
     cloudiness: 20
     precipitation: 0
     precipitation_deposits: 0
@@ -19,7 +19,7 @@ weather:
     wetness: 0
     sun_azimuth_angle: 0
     sun_altitude_angle: 10
-  custom_soft_low_light:
+  soft_low_light:
     cloudiness: 50
     precipitation: 0
     precipitation_deposits: 0
@@ -29,7 +29,7 @@ weather:
     wetness: 0
     sun_azimuth_angle: 0
     sun_altitude_angle: 5
-  custom_hard_low_light:
+  hard_low_light:
     cloudiness: 100
     precipitation: 0
     precipitation_deposits: 0
@@ -39,7 +39,7 @@ weather:
     wetness: 0
     sun_azimuth_angle: 0
     sun_altitude_angle: -90
-  custom_soft_noisy_low_light:
+  soft_noisy_low_light:
     cloudiness: 80
     precipitation: 50
     precipitation_deposits: 50
@@ -49,7 +49,7 @@ weather:
     wetness: 0
     sun_azimuth_angle: 0
     sun_altitude_angle: 20
-  custom_hard_noisy_low_light:
+  hard_noisy_low_light:
     cloudiness: 100
     precipitation: 100
     precipitation_deposits: 100

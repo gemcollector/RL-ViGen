@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: habitat-lab
+Version: 0.2.3
+Summary: Habitat Lab: a modular high-level library for end-to-end development in Embodied AI.
+Home-page: https://aihabitat.org/
+Author: Facebook AI Research
+License: MIT License
+Project-URL: GitHub repo, https://github.com/facebookresearch/habitat-lab/
+Project-URL: Bug Tracker, https://github.com/facebookresearch/habitat-lab/issues
+Classifier: Intended Audience :: Science/Research
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Unix

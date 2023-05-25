@@ -8,7 +8,7 @@ warnings.filterwarnings('ignore', category=DeprecationWarning)
 import os
 os.environ['MKL_SERVICE_FORCE_INTEL'] = '1'
 os.environ['MUJOCO_GL'] = 'egl'
-
+import quaternion
 from pathlib import Path
 
 import hydra
@@ -22,7 +22,6 @@ from logger import Logger
 from replay_buffer import ReplayBufferStorage, make_replay_loader
 from video import TrainVideoRecorder, VideoRecorder
 import wandb
-import quaternion
 
 torch.backends.cudnn.benchmark = True
 
@@ -59,7 +58,7 @@ class Workspace:
             wandb.init(project=self.cfg.wandb_proj_name, group=f'{self.cfg.agent._target_}', name=exp_name)
         # create logger
         self.logger = Logger(self.work_dir, use_tb=self.cfg.use_tb, use_wandb=self.cfg.use_wandb)
-        assert env in ['dmc', 'carla', 'robosuite', 'habitat']
+        assert env in ['dmc', 'robosuite', 'habitat']
         # create envs
         if env == 'dmc':
             self.train_env = dmc.make(self.cfg.task_name, self.cfg.frame_stack,
@@ -141,7 +140,6 @@ class Workspace:
 
             episode += 1
             self.video_recorder.save(f'{self.global_frame}.mp4')
-        print(episode, step, self.cfg.action_repeat)
 
         with self.logger.log_and_dump_ctx(self.global_frame, ty='eval') as log:
             log('episode_reward', total_reward / episode)

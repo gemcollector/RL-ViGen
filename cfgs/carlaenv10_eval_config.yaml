@@ -2,8 +2,8 @@ defaults:
   - setting: setting
 
 ip: localhost
-port: 2052
-traffic_manager_port: 8052
+port: 2018
+traffic_manager_port: 8018
 max_episode_steps: 1000
 frame_skip: 2
 render_display: 0  # 0, 1
@@ -22,17 +22,17 @@ cameras:  #  - foresight0 - foresight1 - foresight2 - backsight - side - above
 #  - above
 
 # if scenario is not none, map and vehicle_spawn_point_id will be overwritten
-scenario: narrow  # none(空格或换行), train, highway, narrow, roundabout, tunnel
+scenario: train  # none(space or change line), train, highway, narrow, roundabout, tunnel
 map: Town04  # (Town04), Town01, Town02, Town03, Town05 ...
 vehicle_spawn_point_id: random  # random or 0 to 100+
 
-weather: HardRainSunset # custom_hard_high_light, custom_soft_high_light, custom_soft_low_light,
-                    # custom_hard_low_light, custom_soft_noisy_low_light, custom_hard_noisy_low_light, ClearNoon, ClearSunset,
+weather: Default # hard_high_light, soft_high_light, soft_low_light,
+                    # hard_low_light, soft_noisy_low_light, hard_noisy_low_light, ClearNoon, ClearSunset,
                     # CloudyNoon, CloudySunset, Default, HardRainNoon, HardRainSunset,
                     # MidRainSunset, SoftRainNoon, SoftRainSunset, WetCloudyNoon, WetCloudySunset,
                     # WetNoon, WetSunset
 changing_weather_speed: 0  # train, [0, +inf)
 
 vehicle: vehicle.lincoln.mkz2017  # train, random, vehicle.audi.a2, vehicle.audi.tt, vehicle.lincoln.mkz2017, vehicle.nissan.patrol, ... vehicle.jeep.wrangler_rubicon, vehicle.mini.cooperst, vehicle.bmw.grandtourer
-num_other_cars: 5  # train, recommend 0 to 100 (should be >= 'num_other_cars_nearby')
-num_other_cars_nearby: 0 # train
+num_other_cars: 40  # train, recommend 0 to 100 (should be >= 'num_other_cars_nearby')
+num_other_cars_nearby: 8 # train

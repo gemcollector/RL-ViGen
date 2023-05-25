@@ -8,7 +8,7 @@ import hydra
 
 def make_env():
     hydra.core.global_hydra.GlobalHydra.instance().clear()
-    with initialize(config_path="../cfgs"):
+    with initialize(config_path="../../cfgs"):
         # cfg = compose(config_name="config", overrides=[f"task={task}"])
         cfg = compose(config_name="carlaenv_config")
         cfg_dict = omegaconf_to_dict(cfg)
@@ -17,7 +17,7 @@ def make_env():
 
 def make_env_8():
     hydra.core.global_hydra.GlobalHydra.instance().clear()
-    with initialize(config_path="../cfgs"):
+    with initialize(config_path="../../cfgs"):
         # cfg = compose(config_name="config", overrides=[f"task={task}"])
         cfg = compose(config_name="carlaenv8_config")
         cfg_dict = omegaconf_to_dict(cfg)
@@ -26,22 +26,22 @@ def make_env_8():
 
 def make_env_10(action_repeat):
     hydra.core.global_hydra.GlobalHydra.instance().clear()
-    with initialize(config_path="../cfgs"):
+    with initialize(config_path="../../cfgs"):
         # cfg = compose(config_name="config", overrides=[f"task={task}"])
         cfg = compose(config_name="carlaenv10_config")
         cfg_dict = omegaconf_to_dict(cfg)
     cfg_dict['frame_skip'] = action_repeat
-    print('frame_skip', cfg_dict['frame_skip']')
     env = CarlaEnv10(cfg_dict)
     return env
 
 
-def make_env_10_eval():
+def make_env_10_eval(action_repeat):
     hydra.core.global_hydra.GlobalHydra.instance().clear()
-    with initialize(config_path="../cfgs"):
+    with initialize(config_path="../../cfgs"):
         # cfg = compose(config_name="config", overrides=[f"task={task}"])
         cfg = compose(config_name="carlaenv10_eval_config")
         cfg_dict = omegaconf_to_dict(cfg)
+    cfg_dict['frame_skip'] = action_repeat
     env = CarlaEnv10_eval(cfg_dict)
     return env
 

@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: dmc2gym
+Version: 1.0.0
+Summary: a gym like wrapper for dm_control
+Author: Denis Yarats
+Keywords: gym dm_control openai deepmind
+License-File: LICENSE

@@ -25,13 +25,13 @@
 #              use_wandb=False
 
 
-easy_task_list=('Door')
+easy_task_list=('carla')
 frames=1001000
 feature_dim=50
 sgqn_quantile=0.93
 action_repeat=2
 aux_lr=8e-5
-env=habitat
+env=carla
 
 for task_name in ${easy_task_list[@]};
 do

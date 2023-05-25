@@ -214,11 +214,9 @@ class Gym2DMC(Environment):
             name='action'
         )
         self._gym_env = gym_env
-        self.render_obs = None
 
     def step(self, action):
         obs, reward, done, info = self._gym_env.step(action)
-        self.render_obs = obs['rgb1']
         # info1 = self._gym_env.env.env._env.get_info(obs)
         # top_down_map = maps.colorize_draw_agent_and_fit_to_height(
         #     info1["top_down_map"], self._observation_spec.shape[1]
@@ -237,7 +235,7 @@ class Gym2DMC(Environment):
         # # max_pix = np.max(top_down_map)
         # # top_down_map *= int(255/max_pix)
 
-        del obs['imagegoal'], obs['rgb1']
+        del obs['imagegoal']
         # obs['map'] = top_down_map
         if done:
             step_type = StepType.LAST
@@ -253,7 +251,6 @@ class Gym2DMC(Environment):
 
     def reset(self):
         obs = self._gym_env.reset()
-        self.render_obs = obs['rgb1']
         # self._gym_env.env.env._env._env._task.measurements.update_measures(  # TODO GVRLB
         #     episode=self._gym_env.env.env._env._env.current_episode,
         #     action=np.zeros(self._gym_env.env.env._env._env.action_space.spaces['velocity_control'].n),
@@ -267,7 +264,6 @@ class Gym2DMC(Environment):
         # top_down_map = cv2.resize(top_down_map,
         #                           dsize=(self._observation_spec.shape[1], self._observation_spec.shape[1]),
         #                           interpolation=cv2.INTER_CUBIC)
-        del obs['imagegoal'], obs['rgb1']
         # obs['map'] = top_down_map
         return TimeStep(step_type=StepType.FIRST,
                         reward=None,

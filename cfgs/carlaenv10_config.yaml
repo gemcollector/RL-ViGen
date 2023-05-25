@@ -1,6 +1,6 @@
 ip: localhost
-port: 2012
-traffic_manager_port: 8012
+port: 2018
+traffic_manager_port: 8018
 max_episode_steps: 1000
 frame_skip: 2
 render_display: 0  # 0, 1

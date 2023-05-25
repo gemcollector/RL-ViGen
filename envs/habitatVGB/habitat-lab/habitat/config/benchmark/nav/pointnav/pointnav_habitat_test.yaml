@@ -1,0 +1,13 @@
+# @package _global_
+
+defaults:
+  - pointnav_base
+  - /habitat/dataset/pointnav: habitat_test
+
+habitat:
+  gym:
+    auto_name: PointNav
+    obs_keys:
+      - depth
+      - pointgoal_with_gps_compass
+      - rgb

@@ -3,6 +3,10 @@
 ## Config file
 The config file is located at `RL-ViGen/cfgs/carlaenv10_config.yaml` and `RL-ViGen/cfgs/carlaenv10_eval_config.yaml`. You can change the config file for different setups.
 
+## Testing script
+```
+
+```
 
 ## Parameter Description
 ### Systematic params

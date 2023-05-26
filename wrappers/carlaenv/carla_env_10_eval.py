@@ -270,8 +270,7 @@ class CarlaEnv10_eval(object):
         self.frame_skip = cfg_dict['frame_skip']
         self.num_other_cars = cfg_dict['num_other_cars']
         self.num_other_cars_nearby = cfg_dict['num_other_cars_nearby']
-        # self.num_pedestrians = cfg_dict['num_pedestrians']
-        # self.start_lane = cfg_dict['start_lane']
+
         self.cameras = cfg_dict['cameras']
         self.scenario = cfg_dict['scenario']
         self.setting = cfg_dict['setting']
@@ -541,9 +540,7 @@ class CarlaEnv10_eval(object):
         return obs
 
     def reset_vehicle(self):
-        # start_lane = self.start_lane if self.start_lane is not None else np.random.choice([1, 2, 3, 4])
-        # start_x = 1.5 + 3.5 * start_lane  # 3.5 = lane width
-        # self.vehicle_start_pose = carla.Transform(carla.Location(x=start_x, y=0, z=0.1), carla.Rotation(yaw=-90))
+
         speed = 0
         if self.scenario == 'train':
             start_lane = np.random.choice([1, 2, 3, 4])
@@ -616,43 +613,19 @@ class CarlaEnv10_eval(object):
         # other_cars_nearby
         vehicle_waypoint = self.map.get_waypoint(self.vehicle.get_location())
         next_waypoint = random.choice(vehicle_waypoint.next(4.0))
-        # for seed in range(self.num_other_cars_nearby):
-        #     # waypoint = random.choice(vehicle_waypoint.next(10.0))
-        #     # other_vehicle_transforms.append(waypoint.transform)
-        #     # random.seed(seed)
-        #     delta_x = random.uniform(-10., 10.)
-        #     delta_y = random.uniform(-10., 10.)
-        #     # vehicle_waypoint.transform.location.x += delta_x
-        #     # vehicle_waypoint.transform.location.y += delta_y
-        #     transform = carla.Transform(carla.Location(x=next_waypoint.transform.location.x + delta_x, y=next_waypoint.transform.location.y + delta_y, z=0.1), vehicle_waypoint.transform.rotation)
-        #     other_vehicle_transforms.append(transform)
 
         road_id = next_waypoint.road_id
         s = next_waypoint.s
-        # for seed in range(self.num_other_cars_nearby):
-        #     # waypoint = random.choice(vehicle_waypoint.next(10.0))
-        #     # other_vehicle_transforms.append(waypoint.transform)
-        #     # random.seed(seed)
-        #     delta_x = random.uniform(-10., 10.)
-        #     delta_y = random.uniform(-10., 10.)
-        #     # vehicle_waypoint.transform.location.x += delta_x
-        #     # vehicle_waypoint.transform.location.y += delta_y
-        #     transform = carla.Transform(carla.Location(x=next_waypoint.transform.location.x + delta_x, y=next_waypoint.transform.location.y + delta_y, z=0.1), vehicle_waypoint.transform.rotation)
-        #     other_vehicle_transforms.append(transform)
+
         for _ in range(self.num_other_cars_nearby):
             # lane_id = random.choice([-1, -2, -3, -4])
             if vehicle_waypoint.lane_id < 0:
                 lane_id = random.choice([-1, -2, -3, -4])
             elif vehicle_waypoint.lane_id > 0:
                 lane_id = random.choice([1, 2, 3, 4])
-            # lane_id = next_waypoint.lane_id
-            # lane_id = random.choice([vehicle_waypoint.lane_id-1,vehicle_waypoint.lane_id,vehicle_waypoint.lane_id+1])
             vehicle_s = np.random.uniform(s - 40., s + 40)
             other_vehicle_waypoint = self.map.get_waypoint_xodr(road_id, lane_id, vehicle_s)
             while other_vehicle_waypoint is None:
-                # lane_id = random.choice([-1, -2, -3, -4])
-                # lane_id = random.choice([-1, -2, -3, -4, 1, 2, 3, 4])
-                # lane_id = random.choice([vehicle_waypoint.lane_id - 1, vehicle_waypoint.lane_id, vehicle_waypoint.lane_id + 1])
                 if vehicle_waypoint.lane_id < 0:
                     lane_id = random.choice([-1, -2, -3, -4])
                 elif vehicle_waypoint.lane_id > 0:
@@ -779,16 +752,7 @@ class CarlaEnv10_eval(object):
         else:
             throttle, steer, brake = 0., 0., 0.
 
-        # Advance the simulation and wait for the data.
-        # if self.render_display:
-        #     snapshot, image_rgb, image_rl, image_rl_left, image_rl_lefter, image_rl_right, image_rl_righter, image_rl_side_left, image_rl_side_right, image_rl_backsight, image_rl_above = self.sync_mode.tick(
-        #         timeout=2.0)
-        #     # snapshot, image_rgb, image_rl, image_rl_left, image_rl_lefter, image_rl_right, image_rl_righter, ray_cast = self.sync_mode.tick(timeout=2.0)
-        #     # yang = ray_cast
-        # else:
-        #     # , image_rl_side_left, image_rl_side_right, image_rl_backsight, image_rl_above
-        #     snapshot, image_rl, image_rl_left, image_rl_lefter, image_rl_right, image_rl_righter = self.sync_mode.tick(
-        #         timeout=2.0)
+
         snapshot_image_list = self.sync_mode.tick(timeout=8.0)
         snapshot = snapshot_image_list[0]
         ims = snapshot_image_list[1:]
@@ -925,8 +889,6 @@ class CarlaEnv10_eval(object):
             actor.destroy()
         print('\ndestroying %d vehicles' % len(self.vehicle_list))
         self.client.apply_batch([carla.command.DestroyActor(x) for x in self.vehicle_list])
-        # print('\ndestroying %d pedestrians' % len(self.pedestrian_list))
-        # self.client.apply_batch([carla.command.DestroyActor(x) for x in self.pedestrian_list])
         time.sleep(0.5)
         pygame.quit()
         print('done.')

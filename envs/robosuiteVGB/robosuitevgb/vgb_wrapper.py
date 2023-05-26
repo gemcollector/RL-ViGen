@@ -260,52 +260,6 @@ class VGBWrapper(gym.core.Env, Wrapper):
         return CustomMujocoXML.build_from_env(self)
 
 
-    # def reset(
-    #     self,
-    #     xml_string: Optional[Union[str, List]] = None,
-    #     custom_texture: Optional[Union[str, dict]] = None,
-    # ):
-    #
-    #     if xml_string is not None:
-    #         if xml_string != self._reset_config.get("xml_string", None):
-    #             self._reset_config["xml_string"] = xml_string.copy()
-    #         else:
-    #             xml_string = None
-    #     if custom_texture is not None:
-    #         if custom_texture != self._reset_config.get("custom_texture", None):
-    #             self._reset_config["custom_texture"] = copy.deepcopy(custom_texture)
-    #             self._initialize_xml_modder(custom_texture)
-    #         else:
-    #             custom_texture = None
-    #     # reset from xml should only be called if a different texture/xml is requested
-    #     reset_from_xml = (
-    #         xml_string is not None or custom_texture is not None or self.reset_xml_next
-    #     )
-    #     if reset_from_xml:
-    #         self._reset_from_xml(xml_string)
-    #         self.env.deterministic_reset = False
-    #     else:
-    #         self.env.reset()
-    #     self.env._reset_internal()
-    #     self.reset_xml_next = False
-    #
-    #
-    #     # TODO 下面一段和另一段段可能要调整先后顺序
-    #     # self.restore_default_domain()
-    #     # # save the original env parameters
-    #     # self.save_default_domain()
-    #     # reset counter for doing domain randomization at a particular frequency
-    #     # self.step_counter = 0
-    #     # update sims
-    #     self._initialize_modders()
-    #     for modder in self.modders:
-    #         modder.update_sim(self.env.sim)
-    #     # self._initialize_modders()
-    #     self.randomize_domain()
-    #     self.env.deterministic_reset = False
-    #     self.env._reset_internal()
-    #     self.env.sim.forward()
-    #     return self._reformat_obs(self.env._get_observations(force_update=True))
 
 
     def reset(
@@ -338,7 +292,7 @@ class VGBWrapper(gym.core.Env, Wrapper):
         self.env._reset_internal()
         self.reset_xml_next = False
 
-        # TODO 下面一段和另一段可能要调整先后顺序
+        # TODO change order
         # self.restore_default_domain()
         # # save the original env parameters
         # self.save_default_domain()

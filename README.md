@@ -12,7 +12,7 @@ Our benchmark comprises five major task categories, namely, manipulation, naviga
   <a href="./MODEL_CARD.md"><img alt="Model Card" src="https://img.shields.io/badge/benchmark-RLViGen-green.svg" /></a>
   <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-red.svg" /></a>
   <a href="Python 3.8"><img alt="Python 3.8" src="https://img.shields.io/badge/python-3.8-blue.svg" /></a>
-  <a href="https://github.com/psf/black"><img alt="Code style: white" src="https://img.shields.io/badge/code%20style-white-white.svg" /></a>
+  <a href="https://github.com/psf/black"><img alt="Code style: white" src="https://img.shields.io/badge/mujoco-2.3.0-white.svg" /></a>
 </p>
 
 
@@ -123,6 +123,13 @@ bash install_adroit.sh
 - `wrappers`: includes the wrappers for each environment.
 - `scripts`: includes scripts that facilitate training and evaluation. 
 
+
+## Extra Datasets
+The algorithms will use the [Places](http://places2.csail.mit.edu/download.html) dataset for data augmentation, which can be downloaded by running
+```
+wget http://data.csail.mit.edu/places/places365/places365standard_easyformat.tar
+```
+After downloading and extracting the data, add your dataset directory to the datasets list in `cfgs/aug_config.cfg`.
 
 ## Training
 

@@ -16,9 +16,6 @@ import time
 from PIL import Image
 from PIL.PngImagePlugin import PngImageFile, PngInfo
 
-# sys.path.append('/home/yzc/shared/CARLA_0.9.6/PythonAPI/')
-# sys.path.append('/home/yzc/shared/CARLA_0.9.6/PythonAPI/carla')
-# sys.path.append('/home/yzc/shared/CARLA_0.9.6/PythonAPI/carla/dist/carla-0.9.6-py3.5-linux-x86_64.egg')
 sys.path.append('/home/yzc/shared/CARLA_0.9.10/PythonAPI/')
 sys.path.append('/home/yzc/shared/CARLA_0.9.10/PythonAPI/carla')
 sys.path.append('/home/yzc/shared/CARLA_0.9.10/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg')
@@ -239,8 +236,6 @@ class CarlaEnv10(object):
         self.frame_skip = cfg_dict['frame_skip']
         self.num_other_cars = cfg_dict['num_other_cars']
         self.num_other_cars_nearby = cfg_dict['num_other_cars_nearby']
-        # self.num_pedestrians = cfg_dict['num_pedestrians']
-        # self.start_lane = cfg_dict['start_lane']
         self.cameras = cfg_dict['cameras']
 
         self.actor_list = []
@@ -281,7 +276,6 @@ class CarlaEnv10(object):
         blueprint_library = self.world.get_blueprint_library()
 
         cam_list = []
-        # 添加用于render的camera
         if cfg_dict['render_display']:
             self.camera_rgb = self.world.spawn_actor(
                 blueprint_library.find('sensor.camera.rgb'),
@@ -291,7 +285,6 @@ class CarlaEnv10(object):
             self.actor_list.append(self.camera_rgb)
             cam_list.append(self.camera_rgb)
 
-        # 添加用于rl的camera
         # we'll use up to five cameras, which we'll stitch together
         bp = blueprint_library.find('sensor.camera.rgb')
         bp.set_attribute('image_size_x', str(self.rl_image_size))
@@ -362,17 +355,13 @@ class CarlaEnv10(object):
             self.actor_list.append(self.camera_rl_above)
             cam_list.append(self.camera_rl_above)
 
-        # 添加用于rl的sensor
         bp = self.world.get_blueprint_library().find('sensor.other.collision')
         self.collision_sensor = self.world.spawn_actor(bp, carla.Transform(), attach_to=self.vehicle)
         self.collision_sensor.listen(lambda event: self._on_collision(event))
         self.actor_list.append(self.collision_sensor)
         self._collision_intensities_during_last_time_step = []
 
-        # 尝试其他sensor
-        # bp = self.world.get_blueprint_library().find('sensor.lidar.ray_cast')
-        # self.ray_cast = self.world.spawn_actor(bp, carla.Transform(), attach_to=self.vehicle)
-        # self.actor_list.append(self.ray_cast)
+
 
         if self.save_display_images or self.save_rl_images:
             import datetime
@@ -381,14 +370,7 @@ class CarlaEnv10(object):
             os.mkdir(image_dir)
             self.image_dir = image_dir
 
-        # if self.render_display:
-        #     self.sync_mode = CarlaSyncMode(self.world, self.camera_rgb, self.camera_rl, self.camera_rl_left,
-        #                                    self.camera_rl_lefter, self.camera_rl_right, self.camera_rl_righter, self.camera_rl_side_left, self.camera_rl_side_right, self.camera_rl_backsight, self.camera_rl_above, fps=20)
-        #     # self.sync_mode = CarlaSyncMode(self.world, self.camera_rgb, self.camera_rl, self.camera_rl_left, self.camera_rl_lefter, self.camera_rl_right, self.camera_rl_righter, self.ray_cast, fps=20)
-        # else:
-        #     self.sync_mode = CarlaSyncMode(self.world, self.camera_rl, self.camera_rl_left, self.camera_rl_lefter, self.camera_rl_right, self.camera_rl_righter,
-        #                                    self.camera_rl_side_left, self.camera_rl_side_right, self.camera_rl_backsight, self.camera_rl_above,
-        #                                    fps=20)
+
         self.sync_mode = CarlaSyncMode(self.world, *cam_list, fps=20)
 
         # weather
@@ -577,43 +559,21 @@ class CarlaEnv10(object):
         # other_cars_nearby
         vehicle_waypoint = self.map.get_waypoint(self.vehicle.get_location())
         next_waypoint = random.choice(vehicle_waypoint.next(4.0))
-        # for seed in range(self.num_other_cars_nearby):
-        #     # waypoint = random.choice(vehicle_waypoint.next(10.0))
-        #     # other_vehicle_transforms.append(waypoint.transform)
-        #     # random.seed(seed)
-        #     delta_x = random.uniform(-10., 10.)
-        #     delta_y = random.uniform(-10., 10.)
-        #     # vehicle_waypoint.transform.location.x += delta_x
-        #     # vehicle_waypoint.transform.location.y += delta_y
-        #     transform = carla.Transform(carla.Location(x=next_waypoint.transform.location.x + delta_x, y=next_waypoint.transform.location.y + delta_y, z=0.1), vehicle_waypoint.transform.rotation)
-        #     other_vehicle_transforms.append(transform)
+
 
         road_id = next_waypoint.road_id
         s = next_waypoint.s
-        # for seed in range(self.num_other_cars_nearby):
-        #     # waypoint = random.choice(vehicle_waypoint.next(10.0))
-        #     # other_vehicle_transforms.append(waypoint.transform)
-        #     # random.seed(seed)
-        #     delta_x = random.uniform(-10., 10.)
-        #     delta_y = random.uniform(-10., 10.)
-        #     # vehicle_waypoint.transform.location.x += delta_x
-        #     # vehicle_waypoint.transform.location.y += delta_y
-        #     transform = carla.Transform(carla.Location(x=next_waypoint.transform.location.x + delta_x, y=next_waypoint.transform.location.y + delta_y, z=0.1), vehicle_waypoint.transform.rotation)
-        #     other_vehicle_transforms.append(transform)
+
         for _ in range(self.num_other_cars_nearby):
             # lane_id = random.choice([-1, -2, -3, -4])
             if vehicle_waypoint.lane_id < 0:
                 lane_id = random.choice([-1, -2, -3, -4])
             elif vehicle_waypoint.lane_id > 0:
                 lane_id = random.choice([1, 2, 3, 4])
-            # lane_id = next_waypoint.lane_id
-            # lane_id = random.choice([vehicle_waypoint.lane_id-1,vehicle_waypoint.lane_id,vehicle_waypoint.lane_id+1])
+
             vehicle_s = np.random.uniform(s - 40., s + 40)
             other_vehicle_waypoint = self.map.get_waypoint_xodr(road_id, lane_id, vehicle_s)
             while other_vehicle_waypoint is None:
-                # lane_id = random.choice([-1, -2, -3, -4])
-                # lane_id = random.choice([-1, -2, -3, -4, 1, 2, 3, 4])
-                # lane_id = random.choice([vehicle_waypoint.lane_id - 1, vehicle_waypoint.lane_id, vehicle_waypoint.lane_id + 1])
                 if vehicle_waypoint.lane_id < 0:
                     lane_id = random.choice([-1, -2, -3, -4])
                 elif vehicle_waypoint.lane_id > 0:
@@ -973,32 +933,3 @@ class RoamingAgentModified(Agent):
         return control
 
 
-# if __name__ == '__main__':
-#     from carlaenv.utils import omegaconf_to_dict
-#     from hydra import compose, initialize
-#
-#     with initialize(config_path="../cfg"):
-#         # cfg = compose(config_name="config", overrides=[f"task={task}"])
-#         cfg = compose(config_name="config")
-#         cfg_dict = omegaconf_to_dict(cfg)
-#     env = CarlaEnv(cfg_dict)
-#
-#     try:
-#         # done = False
-#         # while not done:
-#         #     action = env.compute_steer_action()
-#         #     next_obs, reward, done, info = env.step(action)
-#         # obs = env.reset()
-#
-#         count = 0
-#         t0 = time.time()
-#         while count < 200:
-#             action = env.compute_steer_action()
-#             next_obs, reward, done, info = env.step(action)
-#             if done:
-#                 env.reset()
-#             count += 1
-#         print(time.time() - t0)
-#
-#     finally:
-#         env.finish()

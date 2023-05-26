@@ -95,9 +95,6 @@ def evaluate(env, agent, video, video_dir, mode, num_episodes, seed=0, domain_na
         video.save(f'{video_dir}/eval_{i}.mp4')
         episode_reward = 0 if episode_reward < 0 else episode_reward
         episode_rewards.append(episode_reward)
-        # f = open("/home/yzc/dmcontrol-generalization-benchmark/scripts/eval/{}_{}_{}_file_{}.txt".format(domain_name, task_name, algo, seed), 'a')
-        # f.write("%f, %d\n" % (float(episode_reward), i))
-        # f.close()
 
 
     return np.mean(episode_rewards)

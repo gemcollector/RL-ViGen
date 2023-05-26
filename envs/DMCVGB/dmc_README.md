@@ -29,3 +29,14 @@ env = dmcvgb.make_env()
 
 env.step()  
 env.reset()  
+
+
+
+
+Distracting Control Suite uses the [DAVIS](https://davischallenge.org/davis2017/code.html) dataset for video backgrounds, which can be downloaded by running
+
+```
+wget https://data.vision.ee.ethz.ch/csergi/share/davis/DAVIS-2017-trainval-480p.zip
+```
+
+

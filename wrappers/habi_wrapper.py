@@ -117,7 +117,6 @@ class FrameStackWrapper(dm_env.Environment):
         time_step, info = self._env.step(action)
         rgb = self._extract_pixels(time_step, 'rgb')
         # map = self._extract_pixels(time_step, 'map')
-        # matplotlib.image.imsave('habitat.png', np.transpose(rgb, (1, 2, 0)))  # TODO
         self._frames.append(rgb)
         # self._frames.append(map)
         self._success += info['success']
@@ -217,23 +216,6 @@ class Gym2DMC(Environment):
 
     def step(self, action):
         obs, reward, done, info = self._gym_env.step(action)
-        # info1 = self._gym_env.env.env._env.get_info(obs)
-        # top_down_map = maps.colorize_draw_agent_and_fit_to_height(
-        #     info1["top_down_map"], self._observation_spec.shape[1]
-        # )
-        # top_down_map = cv2.resize(top_down_map, dsize=(self._observation_spec.shape[1], self._observation_spec.shape[1]), interpolation=cv2.INTER_CUBIC)
-
-        # top_down_map = info['top_down_map.map']
-        # top_down_map = np.stack([top_down_map, top_down_map, top_down_map]).transpose((1, 2, 0))
-        # top_down_map[
-        # info['top_down_map.agent_map_coord'][0] - 15:info['top_down_map.agent_map_coord'][0] + 15,
-        # info['top_down_map.agent_map_coord'][1] - 15:info['top_down_map.agent_map_coord'][1] + 15,:] = [10, 0, 0]
-        # top_down_map *= 25
-        # np.clip(top_down_map, 0, 255)
-
-        # top_down_map = cv2.resize(top_down_map, dsize=(self._observation_spec.shape[1], self._observation_spec.shape[1]), interpolation=cv2.INTER_CUBIC)
-        # # max_pix = np.max(top_down_map)
-        # # top_down_map *= int(255/max_pix)
 
         del obs['imagegoal']
         # obs['map'] = top_down_map
@@ -251,20 +233,7 @@ class Gym2DMC(Environment):
 
     def reset(self):
         obs = self._gym_env.reset()
-        # self._gym_env.env.env._env._env._task.measurements.update_measures(  # TODO GVRLB
-        #     episode=self._gym_env.env.env._env._env.current_episode,
-        #     action=np.zeros(self._gym_env.env.env._env._env.action_space.spaces['velocity_control'].n),
-        #     task=self._gym_env.env.env._env._env.task,
-        #     observations=obs,
-        # )
-        # info1 = self._gym_env.env.env._env.get_info(obs)
-        # top_down_map = maps.colorize_draw_agent_and_fit_to_height(
-        #     info1["top_down_map"], self._observation_spec.shape[1]
-        # )
-        # top_down_map = cv2.resize(top_down_map,
-        #                           dsize=(self._observation_spec.shape[1], self._observation_spec.shape[1]),
-        #                           interpolation=cv2.INTER_CUBIC)
-        # obs['map'] = top_down_map
+
         return TimeStep(step_type=StepType.FIRST,
                         reward=None,
                         discount=None,

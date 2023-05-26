@@ -4,6 +4,7 @@ defaults:
   - override hydra/launcher: submitit_local
 
 # task settings
+env: None
 frame_stack: 3
 action_repeat: 2
 discount: 0.99
@@ -35,7 +36,7 @@ name: drq
 wandb_group: None
 
 agent:
-  _target_: drq.DrQAgent
+  _target_: algos.drq.DrQAgent
   obs_shape: ??? # to be specified later
   action_shape: ??? # to be specified later
   device: ${device}

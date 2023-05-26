@@ -1,5 +1,3 @@
-# import carlaenv.carla_env
-# import carlaenv.carla_env_8
 # import carlaenv.carla_env_10
 # import carlaenv.carla_env_10_eval
 import sys

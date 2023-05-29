@@ -15,7 +15,7 @@ from PIL import Image
 
 
 def main():
-    domain_name = 'unitree'
+    domain_name = 'quadruped'
     task_name = 'walk'
     seed = 1
     test_env = make_env(domain_name, task_name, seed)

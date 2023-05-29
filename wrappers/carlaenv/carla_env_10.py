@@ -249,7 +249,7 @@ class CarlaEnv10(object):
         self.client = carla.Client(cfg_dict['ip'], cfg_dict['port'])
         self.client.set_timeout(500.0)
 
-        self.world = self.client.load_world(cfg_dict['map'])  # 修改地图
+        self.world = self.client.load_world(cfg_dict['map'])  # change map here
         self.map = self.world.get_map()
         self.vehicle_spawn_points = self.map.get_spawn_points()
         # assert self.map.name == "Town05"

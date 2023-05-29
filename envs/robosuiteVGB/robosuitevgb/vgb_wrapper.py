@@ -331,7 +331,7 @@ class VGBWrapper(gym.core.Env, Wrapper):
         f.close()
 
         if self.secant_modders["texture"] is not None:
-            self.secant_modders["texture"].random_texture_change(mujoco_xml)  # todo 这里改texture,门没改可能是这里的问题
+            self.secant_modders["texture"].random_texture_change(mujoco_xml)  # TODO may change the texture
         self.env.reset_from_xml_string(mujoco_xml.to_string())
 
     def get_tex_candidate(self):

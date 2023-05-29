@@ -109,7 +109,7 @@ def _make_habitat_gym_env(
     config.habitat.simulator.agents.main_agent.sim_sensors.rgb_sensor.height = cfg_dict['image_height']
     config.habitat.simulator.agents.main_agent.sim_sensors.rgb_sensor.width = cfg_dict['image_width']
     # if mode == 'test':
-    #     config.habitat.dataset.data_path = config.habitat.dataset.data_path.replace('id', f'{cfg_dict["scene_id"]}')  # TODO 改json放入相应目录
+    #     config.habitat.dataset.data_path = config.habitat.dataset.data_path.replace('id', f'{cfg_dict["scene_id"]}')  # TODO change json to the corrsponding dir
 
     with open('data/default.physics_config.json', 'r') as f:
         dynamics = json.load(f)

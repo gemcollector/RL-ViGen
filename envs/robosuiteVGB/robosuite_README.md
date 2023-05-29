@@ -13,22 +13,18 @@ env = make_env(task_name='Door', seed=1)
 you can run `test/env_test.py` to test the environment as well. 
 
 ## Parameter Description
-### Systematic params
-- `port`: The port of the CARLA engine.
-- `traffic_port`: The port of the CARLA traffic manager.
-- `rl_image_size`: The image size of the input image.
+
 
 ### Environment params
-- `fov`:
-- `cameras`:
-- `map`:
-- `weather`: 
+- `task_def`: specify the running task name.
+- `robots`:  specify your robot arm type.
+- `camera_names`: change the camera in another view. 
 - `changing_weather_speed`: 
 - `vehicle`: the controlled vehicle type.
 
 
 
-
+More infomation and details can be found at [Robosuite](https://robosuite.ai/docs/) official website.
 
 
 

@@ -49,7 +49,7 @@ class VGBWrapper(gym.core.Env, Wrapper):
         scene_id: Optional[int] = 0,
         verbose: bool = False,
         seed=None,
-        randomize_color=True,  # TODO gvrlb
+        randomize_color=True,  
         randomize_camera=True,
         randomize_lighting=True,
         randomize_dynamics=True,
@@ -245,7 +245,7 @@ class VGBWrapper(gym.core.Env, Wrapper):
             self.step_diffuse = 0.01
             self.light_pos_range = [self.env.sim.model.light_pos[:,1] - 20, self.env.sim.model.light_pos[:,1] + 20]
             self.light_diffuse_range = [max(self.env.sim.model.light_diffuse[:,1] - 0.5, 0.15), min(self.env.sim.model.light_diffuse[:,1] + 0.2, 0.95)]
-        # TODO 下面一段和另一段可能要调整先后顺序
+        # TODO may change the order
         # self.restore_default_domain()
         # # save the original env parameters
         # self.save_default_domain()
@@ -276,7 +276,7 @@ class VGBWrapper(gym.core.Env, Wrapper):
         # f.close()
 
         if self.secant_modders["texture"] is not None:
-            self.secant_modders["texture"].random_texture_change(mujoco_xml)  # todo 这里改texture,门没改可能是这里的问题
+            self.secant_modders["texture"].random_texture_change(mujoco_xml)  # TODO may change the texture
         self.env.reset_from_xml_string(mujoco_xml.to_string())
 
     def get_tex_candidate(self):

@@ -100,7 +100,7 @@ def _make_habitat_gym_env(
         config.habitat.dataset.data_path = cfg_dict['setting']['data_path'][cfg_dict['mode']]
     # if mode == 'test':
     #     import pdb; pdb.set_trace()
-    #     config.habitat.dataset.data_path = config.habitat.dataset.data_path.replace('id', f'{cfg_dict["scene_id"]}')  # TODO 改json放入相应目录
+    #     config.habitat.dataset.data_path = config.habitat.dataset.data_path.replace('id', f'{cfg_dict["scene_id"]}')  # TODO change json to the corrsponding dir
     config.habitat.simulator.agents.main_agent.sim_sensors.rgb_sensor.height = cfg_dict['image_height']
     config.habitat.simulator.agents.main_agent.sim_sensors.rgb_sensor.width = cfg_dict['image_width']
 

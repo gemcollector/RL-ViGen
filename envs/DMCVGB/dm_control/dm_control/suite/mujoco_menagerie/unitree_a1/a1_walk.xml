@@ -87,10 +87,7 @@
       <geom class="collision" pos="0.25 0 -0.05" size="0.005 0.06" quat="1 1 0 0"/>
       <geom class="collision" pos="0.255 0 0.0355" size="0.021 0.052" quat="1 1 0 0"/>
       <camera name="back_above"  pos="0.7 0.0 0.5" euler="0 .83 1.57" mode="targetbody"/>
-      <!-- 第二 -->
-      <!-- <camera name="back"  pos="0.9 0.0 -0.18" euler="1.57 1.57 0" mode="trackcom"/> -->
-      <!-- 第三 -->
-      <!-- <camera name="back"  pos="0.9 0.0 -0.18" euler="1.57 1.57 0" mode="targetbody"/>  -->
+
       
       <camera name="y"  pos="0 2.5 1.5" xyaxes="-1 0 0 0 -.5 1" mode="trackcom"/>
       <camera name="y1"  pos="0 2 .5" xyaxes="-1 0 0 0 -.2 1" mode="trackcom"/>

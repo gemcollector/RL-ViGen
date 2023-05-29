@@ -24,4 +24,4 @@ The config file is located at `RL-ViGen/cfgs/carlaenv10_config.yaml` and `RL-ViG
 
 
 
-
+More infomation and details can be found at [CARLA](http://carla.org/) official website.

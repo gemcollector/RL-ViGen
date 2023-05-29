@@ -1,35 +1,12 @@
-## install
-conda env create -f env.yml  
-conda activate dmcvgb    
-或  
-conda activate yourexistingenv  
-conda env update --file env.yml  
-
-cd dm_control  
-python setup.py install  
-cd ..  
-cd dmc2gym  
-python setup.py install  
-cd ..  
-pip install -e .
+# DMC Instruction
    
   
-## 测试脚本test/env_test.py  
-  
-## use   
-在cfg中配置env  
-
-可参考 test/env_test.py  
+## Testing script
+```
 from dmcvgb import *     
-env = make_env()  
-
-或
-import dmcvgb    
-env = dmcvgb.make_env()  
-
-env.step()  
-env.reset()  
-
+env = make_env(domain_name='unitree', task_name='walk', seed=1)
+```
+you can run `test/env_test.py` to test the environment as well. 
 
 
 
@@ -40,3 +17,14 @@ wget https://data.vision.ee.ethz.ch/csergi/share/davis/DAVIS-2017-trainval-480p.
 ```
 
 
+## Parameter Description
+
+
+### Environment params
+- 
+- 
+
+
+
+
+More infomation and details can be found at [DM-Control](https://robosuite.ai/docs/) official website and [DMC-GB](https://github.com/nicklashansen/dmcontrol-generalization-benchmark) repo.

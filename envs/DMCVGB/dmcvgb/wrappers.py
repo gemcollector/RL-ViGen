@@ -213,7 +213,7 @@ class FrameStack(gym.Wrapper):
 
 	def step(self, action):
 		obs, reward, done, info = self.env.step(action)
-		# obs, reward, done, _, info = self.env.step(action)  # yangsizhe
+		# obs, reward, done, _, info = self.env.step(action)  
 		self._frames.append(obs)
 		return self._get_obs(), reward, done, info
 
@@ -272,7 +272,7 @@ def do_green_screen(x, bg):
 			# max_h, max_s, max_v = (185, 255, 255)
 			# min_h, min_s, min_v = (130, 110, 100)
 			# max_h, max_s, max_v = (155, 225, 225)
-			# if min_h <= h <= max_h and min_s <= s <= max_s and min_v <= v <= max_v:  # 替换一定范围内的rgb
+			# if min_h <= h <= max_h and min_s <= s <= max_s and min_v <= v <= max_v:  # replace the range of rgb
 			if r == g == b == 0:
 				pix[x, y] = bg[x, y]
 

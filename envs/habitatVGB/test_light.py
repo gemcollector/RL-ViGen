@@ -10,7 +10,7 @@ from habitat_sim.gfx import LightInfo, LightPositionModel
 from habitat_sim.utils.common import quat_from_angle_axis
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-data_path = os.path.join(dir_path, "/home/yang/projects/projects_GVRLB/habitat-sim/data")
+data_path = os.path.join(dir_path, "/TO/YOUR/PATH")
 output_path = os.path.join(dir_path, "lighting_tutorial_output/")
 
 save_index = 0

@@ -25,7 +25,7 @@ obs = env.reset()
 obs_rgb = obs['robot_head_depth']
 obs, reward, done, info = env.step(env.action_space.sample())
 while (not done) and count < 1000:
-    # aaa = env.action_space.contains(np.array([6.0, 0.2], dtype=np.float32))  # action space的box dtype是float32, 必须传入float32，否则判定action不包含在action space里
+    # aaa = env.action_space.contains(np.array([6.0, 0.2], dtype=np.float32))  # the box dtype of action space is float32, we have to input float32，otherwise there will be an error. 
     obs, reward, done, info = env.step(env.action_space.sample())
     plt.figure(dpi=300)
     plt.imshow(env.render("rgb_array"))

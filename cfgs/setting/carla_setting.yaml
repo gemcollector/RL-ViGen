@@ -22,7 +22,7 @@ cameras:  #  - foresight0 - foresight1 - foresight2 - backsight - side - above
 #  - above
 
 # if scenario is not none, map and vehicle_spawn_point_id will be overwritten
-scenario: tunnel  # none(空格或换行), train, highway, narrow, jaywalk, tunnel
+scenario: tunnel  # none(space or change line), train, highway, narrow, jaywalk, tunnel
 map: Town04  # train (Town04), Town01, Town02, Town03, Town05 ...
 vehicle_spawn_point_id: random  # random or 0 to 100+
 

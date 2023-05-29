@@ -761,7 +761,7 @@ class SimulatorSensorConfig(HabitatBaseConfig):
     type: str = MISSING
     height: int = 480
     width: int = 640
-    position: List[float] = field(default_factory=lambda: [0.0, 0.75, 3.1])  # 左右，上下，前后
+    position: List[float] = field(default_factory=lambda: [0.0, 0.75, 3.1])  # left right，up down，front behind
     # Euler's angles:
     orientation: List[float] = field(default_factory=lambda: [0.0, 0.0, 0.0])
 
@@ -2457,7 +2457,7 @@ def register_hydra_plugin(plugin) -> None:
 #     type: str = MISSING
 #     height: int = 480
 #     width: int = 640
-#     position: List[float] = field(default_factory=lambda: [0.0, 0.75, 3.1])  # 左右，上下，前后
+#     position: List[float] = field(default_factory=lambda: [0.0, 0.75, 3.1])   
 #     # Euler's angles:
 #     orientation: List[float] = field(default_factory=lambda: [0.0, 0.0, 0.0])
 

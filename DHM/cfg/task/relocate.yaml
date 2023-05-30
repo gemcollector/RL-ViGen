@@ -1,0 +1,30 @@
+taskdef:
+  task: relocate  # hammer pen relocate door
+  hand: adroit  # adroit MPL sandiahand barrett
+  version: v0
+mode: train  # train test
+seed: 0
+cam_list:  # array  fixed vil_camera cam1 cam2 cam3
+  - cam1
+  - cam2
+  - cam3
+#cam_distance: original  # original far near
+camera:
+  position: original  # original easy hard
+  orientation: original  # original easy hard
+  fov: original  # original easy hard
+
+background:
+  type: original # original color video
+  difficulty: original  # easy hard
+#light_position: original  # original easy hard
+#light_color: original  # original easy hard
+light:
+  position: original  # original easy hard
+  intensity: original  # original easy hard
+  color: original  # original easy hard
+objects_color: original  # original easy hard
+moving_light: original  # original easy hard
+physical_properties: original  # original easy hard
+
+object: 1  # 1 / 2

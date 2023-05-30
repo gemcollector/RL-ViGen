@@ -1,0 +1,38 @@
+<!-- ======================================================
+	This file is part of MuJoCo.     
+	Copyright 2009-2016 Roboti LLC.
+	
+	Model 		:: Sandia hands from Darpa Robotics challenge Package
+		Source		: https://bitbucket.org/osrf/drcsim
+		Downloaded	:
+		
+	Mujoco		:: Advanced physics simulation engine
+		Source		: www.roboti.us
+		Version		: 1.31
+		Released 	: 23Apr16
+		
+	Author		:: Vikash Kumar
+		Contacts 	: kumar@roboti.us
+		Last edits 	: 30Apr16, 20Dec'15
+====================================================== -->
+
+<mujoco model="sandia right hand(v1.31)">
+	<compiler coordinate="local" angle="radian" meshdir="meshes/"/>
+
+	<include file="../sandiaHand/include_sandia_hand_defaults.xml"/>
+	<include file="../sandiaHand/include_sandia_right_hand_details.xml"/>
+
+	
+<!--	<asset>-->
+<!--		<texture name="groundplane" type="2d" builtin="checker" rgb1=".25 .26 .25"-->
+<!--			rgb2=".22 .22 .22" width="100" height="100" mark="none" markrgb=".8 .8 .8"/>-->
+<!--		<material name="MatGnd" texrepeat="5 5"  texture="groundplane"  specular="1" shininess=".3" reflectance="0.00001" rgba="1 1 1 1"/>-->
+<!--	</asset>-->
+	
+	<worldbody>
+<!--		<geom name="ground" type="plane" pos="0 0 -0.5" size="2 2 0.1" conaffinity="1" contype="1" material="MatGnd"/>-->
+<!--		<light directional="false" cutoff="60" exponent="1" diffuse="1 1 1" specular=".1 .1 .1" pos=".3 .3 .5" dir="-.1 -.1 -.5"/>-->
+		<include file="include_sandia_right_hand_chain.xml"/>
+	</worldbody>
+	
+</mujoco>

@@ -1,0 +1,32 @@
+<!-- ======================================================
+	This file is part of MuJoCo.     
+	Copyright 2009-2016 Roboti LLC.
+	
+	Model 		:: Sandia hands from Darpa Robotics challenge Package
+		Source		: https://bitbucket.org/osrf/drcsim
+		Downloaded	: -
+		
+	Author		:: Vikash Kumar
+		Contacts 	: kumar@roboti.us
+		Last edits 	: 20Dec'15
+====================================================== -->
+
+ <mujocoinclude>
+ 
+	<default class="sandia">
+		<site type="sphere" size="0.005"/>
+		<joint limited="true" damping="20" type="hinge" pos="0 0 0" axis="0 0 1" range="-1.570796 1.570796" stiffness="50"/>
+		<geom group="0" contype="0" conaffinity="1" friction="0.7 0.1 0.1" rgba="0.5 0.6 0.7 1" margin="0.001"/>
+		<position kp="1000" ctrllimited="true" ctrlrange="-1.57 1.57"/>
+		<default class="sandia_vis">
+			<geom group="1" contype="0" conaffinity="0" rgba="0.8 0.8 0.75 1" type="mesh"/>
+		</default>
+	</default>
+	
+	<asset>
+		<mesh name="f0"         file="f0.stl"/>
+		<mesh name="f1"         file="f1.stl"/>
+		<mesh name="f2"         file="f2.stl"/>
+	</asset>
+	
+</mujocoinclude>

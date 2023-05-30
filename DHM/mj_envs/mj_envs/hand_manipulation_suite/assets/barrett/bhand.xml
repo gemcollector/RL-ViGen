@@ -1,0 +1,28 @@
+<!-- ======================================================
+	This file is part of MuJoCo.     
+	Copyright 2009-2015 Roboti LLC.
+	
+	Model 		:: Barrett hand from Barrett technologies
+		Source		: https://github.com/jhu-lcsr/barrett_model
+		Downloaded	: 10Oct'15
+		
+	Mujoco		:: Advanced physics simulation engine
+		Source		: www.roboti.us
+		Version		: 1.22
+		Released 	: 26Nov15
+		
+	Author		:: Vikash Kumar
+		Contacts 	: kumar@roboti.us
+		Last edits 	: 26Dec'15
+====================================================== -->
+
+<mujoco model="bhand(v1.22)">
+	<compiler coordinate="local" angle="radian" meshdir="meshes/" />
+	<include file="include_bhandDependencies.xml"/>
+	
+	<worldbody>
+		<light directional="true" cutoff="60" exponent="1" diffuse="1 1 1" specular=".1 .1 .1" pos=".1 .2 1.3" dir="-.1 -.2 -1.3"/>
+		<include file="include_bhandChain.xml"/>
+	</worldbody>
+	
+</mujoco>

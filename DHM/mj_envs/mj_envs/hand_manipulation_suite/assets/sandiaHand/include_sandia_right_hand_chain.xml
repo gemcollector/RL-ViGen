@@ -1,0 +1,175 @@
+<!-- ======================================================
+	This file is part of MuJoCo.     
+	Copyright 2009-2016 Roboti LLC.
+	
+	Model 		:: Sandia hands from Darpa Robotics challenge Package
+		Source		: https://bitbucket.org/osrf/drcsim
+		Downloaded	:-
+		
+	Author		:: Vikash Kumar
+		Contacts 	: kumar@roboti.us
+		Last edits 	: 20Dec'15
+====================================================== -->
+
+<mujocoinclude>
+<!--	<body name="right_palm" pos="0 -0.1 2" quat="0.500003 -0.5 0.499997 -0.5"   user="-6003" childclass="sandia">-->
+<!--	<body name="right_palm" pos="0 0 0.396" euler="1.2 0 1.2" user="-6003" childclass="sandia">-->
+	<body name="right_palm" euler="3.14 0 4.4" pos="0 -0.5 0.2" user="-6003" childclass="sandia">
+		<inertial pos="0 0 0" mass="1.303" diaginertia="0.001303 0.001303 0.001303" />
+		<joint name="ARTx" pos="0 0 0" axis="1 0 0" type="slide" range="-0.25 0.25" damping="20" />
+        <joint name="ARTy" pos="0 0 0" axis="0 1 0" type="slide" range="0 0.2" damping="20" />
+        <joint name="ARTz" pos="0 0 0" axis="0 0 1" type="slide" range="-0.3 0.5" damping="20" />
+        <joint name="ARRx" pos="0 0 0" axis="1 0 0" range="-.75 .75" damping="20" />
+        <joint name="ARRy" pos="0 0 0" axis="0 1 0" range="-.75 .75" damping="20" />
+        <joint name="ARRz" pos="0 0 0" axis="0 0 1" range="-.75 .75" damping="20" />
+		<geom  class="sandia_vis" mesh="r_palm" />
+		<geom type="cylinder" 	pos="0.069 0.016 0.038" quat="0.636712 0.307567 0.636712 -0.307567" size="0.013 0.05"/>
+		<geom type="box" 		pos="0.064 0.008 0.021" quat="0.881593 0.183301 -0.088545 -0.425858" size="0.045 0.0175 0.025"/>
+		<geom type="cylinder" 	pos="0.02 0 -0.005" quat="0.707107 0 0.707107 0" size="0.038 0.025"/>
+		<geom type="box" 		pos="0.11 -0.01 -0.005" quat="0.982936 0 0 0.183947" size="0.045 0.015 0.03"/>
+		<geom type="box" 		pos="0.09 0.02 -0.005" quat="0.982936 0 0 0.183947" size="0.045 0.015 0.03"/>
+		<geom type="box" 		pos="0.06 0.05 -0.005" quat="0.982936 0 0 0.183947" size="0.045 0.015 0.03"/>
+		<geom type="box" 		pos="0.044 -0.04 -0.005" quat="0.922997 0 0 0.384808" size="0.045 0.015 0.03"/>
+		<body name="right_f0_base" pos="0.14 0 0" quat="0.988771 0 0 0.149438" >
+			<inertial pos="0 0 0" mass="0.25" diaginertia="0.00001 0.00001 0.00001" />
+			 <body name="right_f0_0" pos="0 0 0" > 
+				<inertial pos="0 0 0" quat="0.5 0.5 0.5 0.5" mass="0.106" diaginertia="0.000115 0.000115 0.000012" />
+				<joint name="right_f0_j0" type="hinge" pos="0 0 0" axis="0 0 1" range="-1.570796 1.570796"  user="9000" stiffness="50"/>
+				<geom class="sandia_vis" rgba=".2 .2 .2 1" mesh="f0" />
+				<!-- <geom type="cylinder" pos="0 0 0.003" size="0.015 0.0115" rgba="0.7 0.4 0.2 1" />
+				<geom type="cylinder" pos="0.011 0 0.003" quat="0.707107 0.707107 0 0" size="0.01 0.0115" rgba="0.7 0.4 0.2 1" /> -->
+				<body name="right_f0_1" pos="0.028 0 0" quat="0.707107 0.707107 0 0" > 
+					<inertial pos="0 0 0" quat="0.5 0.5 0.5 0.5" mass="0.033" diaginertia="0.000013 0.000013 0.000002" />
+					<joint name="right_f0_j1" type="hinge" pos="0 0 0" axis="0 0 1" range="-1.570796 1.570796"  user="9000" stiffness="50"/> 
+					<geom class="sandia_vis" mesh="f1" />
+					<geom type="capsule" pos="0.024 0 0" quat="0.707107 0 0.707107 0" size="0.01 0.0235"/>
+					<body name="right_f0_2" pos="0.05 0 0" > 
+						<inertial pos="0 0 0" quat="0.5 0.5 0.5 0.5" mass="0.033" diaginertia="0.000010 0.000010 0.000001" />
+						<joint name="right_f0_j2" type="hinge" pos="0 0 0" axis="0 0 1" range="-1.570796 1.570796"  user="9000" stiffness="50"/> 
+						<geom class="sandia_vis" mesh="f2" />
+						<geom type="capsule" pos="0.024 0 0" quat="0.707107 0 0.707107 0" size="0.009 0.0275"/>
+						<!-- <body name="right_f0_2_accel" pos="0.04 0 0" quat="0.707107 -0.707107 0 0" >
+							<inertial pos="0 0 0" mass="0.01" diaginertia="0.000001 0.000001 0.000001" />
+						</body> -->
+					</body>
+					<!-- <body name="right_f0_1_accel" pos="0.03 0 0" quat="0.707107 -0.707107 0 0" >
+						<inertial pos="0 0 0" mass="0.01" diaginertia="0.000001 0.000001 0.000001" />
+					</body> -->
+				</body>
+			</body>
+			<!-- <body name="right_f0_fixed_accel" pos="-0.05 0 0" >
+				<inertial pos="0 0 0" mass="0.01" diaginertia="0.000001 0.000001 0.000001" />
+			</body> -->
+		</body>
+		<body name="right_f1_base" pos="0.115 0.03122 0" quat="0.988771 0 0 0.149438" >
+			<inertial pos="0 0 0" mass="0.25" diaginertia="0.00001 0.00001 0.00001" />
+			<body name="right_f1_0" pos="0 0 0" >
+				<inertial pos="0 0 0" quat="0.5 0.5 0.5 0.5" mass="0.106" diaginertia="0.000115 0.000115 0.000012" />
+				<joint name="right_f1_j0" type="hinge" pos="0 0 0" axis="0 0 1" range="-1.570796 1.570796"  user="9000" stiffness="50"/>
+				<geom class="sandia_vis" rgba=".2 .2 .2 1" mesh="f0" />
+				<!-- <geom type="cylinder" pos="0 0 0.003" size="0.015 0.0115" rgba="0.7 0.4 0.2 1" />
+				<geom type="cylinder" pos="0.011 0 0.003" quat="0.707107 0.707107 0 0" size="0.01 0.0115" rgba="0.7 0.4 0.2 1" /> -->
+				<body name="right_f1_1" pos="0.028 0 0" quat="0.707107 0.707107 0 0" >
+					<inertial pos="0 0 0" quat="0.5 0.5 0.5 0.5" mass="0.033" diaginertia="0.000013 0.000013 0.000002" />
+					<joint name="right_f1_j1" type="hinge" pos="0 0 0" axis="0 0 1" range="-1.570796 1.570796"  user="9000" stiffness="50"/> 
+					<geom class="sandia_vis" mesh="f1" />
+					<geom type="capsule" pos="0.024 0 0" quat="0.707107 0 0.707107 0" size="0.01 0.0235"/>
+					<body name="right_f1_2" pos="0.05 0 0" >
+						<inertial pos="0 0 0" quat="0.5 0.5 0.5 0.5" mass="0.033" diaginertia="0.000010 0.000010 0.000001" />
+						 <joint name="right_f1_j2" type="hinge" pos="0 0 0" axis="0 0 1" range="-1.570796 1.570796"  user="9000" stiffness="50"/> 
+						<geom class="sandia_vis" mesh="f2" />
+						<geom type="capsule" pos="0.024 0 0" quat="0.707107 0 0.707107 0" size="0.009 0.0275"/>
+						<!-- <body name="right_f1_2_accel" pos="0.04 0 0" quat="0.707107 -0.707107 0 0" >
+							<inertial pos="0 0 0" mass="0.01" diaginertia="0.000001 0.000001 0.000001" />
+						</body> -->
+					</body>
+					<!-- <body name="right_f1_1_accel" pos="0.03 0 0" quat="0.707107 -0.707107 0 0" >
+						<inertial pos="0 0 0" mass="0.01" diaginertia="0.000001 0.000001 0.000001" />
+					</body> -->
+				</body>
+			</body>
+			<!-- <body name="right_f1_fixed_accel" pos="-0.05 0 0" >
+				<inertial pos="0 0 0" mass="0.01" diaginertia="0.000001 0.000001 0.000001" />
+			</body> -->
+		</body>
+		<body name="right_f2_base" pos="0.09 0.06245 0" quat="0.988771 0 0 0.149438" >
+			<inertial pos="0 0 0" mass="0.25" diaginertia="0.00001 0.00001 0.00001" />
+			<body name="right_f2_0" pos="0 0 0" >
+				<inertial pos="0 0 0" quat="0.5 0.5 0.5 0.5" mass="0.106" diaginertia="0.000115 0.000115 0.000012" />
+				 <joint name="right_f2_j0" type="hinge" pos="0 0 0" axis="0 0 1" range="-1.570796 1.570796"  user="9000" stiffness="50"/> 
+				<geom class="sandia_vis" rgba=".2 .2 .2 1" mesh="f0" />
+				<!-- <geom type="cylinder" pos="0 0 0.003" size="0.015 0.0115" rgba="0.7 0.4 0.2 1" />
+				<geom type="cylinder" pos="0.011 0 0.003" quat="0.707107 0.707107 0 0" size="0.01 0.0115" rgba="0.7 0.4 0.2 1" /> -->
+				<body name="right_f2_1" pos="0.028 0 0" quat="0.707107 0.707107 0 0" >
+					<inertial pos="0 0 0" quat="0.5 0.5 0.5 0.5" mass="0.033" diaginertia="0.000013 0.000013 0.000002" />
+					<joint name="right_f2_j1" type="hinge" pos="0 0 0" axis="0 0 1" range="-1.570796 1.570796"  user="9000" stiffness="50"/>
+					<geom class="sandia_vis" mesh="f1" />
+					<geom type="capsule" pos="0.024 0 0" quat="0.707107 0 0.707107 0" size="0.01 0.0235"/>
+					<body name="right_f2_2" pos="0.05 0 0" >
+						<inertial pos="0 0 0" quat="0.5 0.5 0.5 0.5" mass="0.033" diaginertia="0.000010 0.000010 0.000001" />
+						<joint name="right_f2_j2" type="hinge" pos="0 0 0" axis="0 0 1" range="-1.570796 1.570796"  user="9000" stiffness="50"/>
+						<geom class="sandia_vis" mesh="f2" />
+						 <geom type="cylinder" pos="0.024 0 0" quat="0.707107 0 0.707107 0" size="0.009 0.0285"/>
+						<geom type="sphere" pos="0.052 0 0" size="0.009"/> 
+						<geom type="capsule" pos="0.024 0 0" quat="0.707107 0 0.707107 0" size="0.009 0.0275"/>
+						<!-- <body name="right_f2_2_accel" pos="0.04 0 0" quat="0.707107 -0.707107 0 0" >
+							<inertial pos="0 0 0" mass="0.01" diaginertia="0.000001 0.000001 0.000001" />
+						</body> -->
+					</body>
+					<!-- <body name="right_f2_1_accel" pos="0.03 0 0" quat="0.707107 -0.707107 0 0" >
+						<inertial pos="0 0 0" mass="0.01" diaginertia="0.000001 0.000001 0.000001" />
+					</body> -->
+				</body>
+			</body>
+			<!-- <body name="right_f2_fixed_accel" pos="-0.05 0 0" >
+				<inertial pos="0 0 0" mass="0.01" diaginertia="0.000001 0.000001 0.000001" />
+			</body> -->
+		</body>
+		<body name="right_f3_base" pos="0.03995 -0.04383 0.014" quat="0.270596 -0.653282 -0.270596 -0.653282" >
+			<inertial pos="0 0 0" mass="0.25" diaginertia="0.00001 0.00001 0.00001" />
+			<body name="right_f3_0" pos="0 0 0" >
+				<inertial pos="0 0 0" quat="0.5 0.5 0.5 0.5" mass="0.106" diaginertia="0.000115 0.000115 0.000012" />
+				<joint name="right_f3_j0" type="hinge" pos="0 0 0" axis="0 0 1" range="-1.570796 1.570796"  user="9000" stiffness="50"/>
+				<geom class="sandia_vis" rgba=".2 .2 .2 1" mesh="f0" />
+				<!-- <geom type="cylinder" pos="0 0 0.003" size="0.015 0.0115" rgba="0.7 0.4 0.2 1" />
+				<geom type="cylinder" pos="0.011 0 0.003" quat="0.707107 0.707107 0 0" size="0.01 0.0115" rgba="0.7 0.4 0.2 1" /> -->
+				<body name="right_f3_1" pos="0.028 0 0" quat="0.707107 0.707107 0 0" >
+					<inertial pos="0 0 0" quat="0.5 0.5 0.5 0.5" mass="0.033" diaginertia="0.000013 0.000013 0.000002" />
+					<joint name="right_f3_j1" type="hinge" pos="0 0 0" axis="0 0 1" range="-1.570796 1.570796"  user="9000" stiffness="50"/>
+					<geom class="sandia_vis" mesh="f1" />
+					<geom type="capsule" contype="0" pos="0.024 0 0" quat="0.707107 0 0.707107 0" size="0.01 0.0235"/>
+					<body name="right_f3_2" pos="0.05 0 0" >
+						<inertial pos="0 0 0" quat="0.5 0.5 0.5 0.5" mass="0.033" diaginertia="0.000010 0.000010 0.000001" />
+						<joint name="right_f3_j2" type="hinge" pos="0 0 0" axis="0 0 1" range="-1.570796 1.570796"  user="9000" stiffness="50"/>
+						<geom class="sandia_vis" mesh="f2" />
+						<geom type="capsule" contype="0" pos="0.024 0 0" quat="0.707107 0 0.707107 0" size="0.009 0.0275"/>
+						<!-- <body name="right_f3_2_accel" pos="0.04 0 0" quat="0.707107 -0.707107 0 0" >
+							<inertial pos="0 0 0" mass="0.01" diaginertia="0.000001 0.000001 0.000001" />
+						</body> -->
+					</body>
+					<!-- <body name="right_f3_1_accel" pos="0.03 0 0" quat="0.707107 -0.707107 0 0" >
+						<inertial pos="0 0 0" mass="0.01" diaginertia="0.000001 0.000001 0.000001" />
+					</body> -->
+				</body>
+			</body>
+			<!-- <body name="right_f3_fixed_accel" pos="-0.05 0 0" >
+				<inertial pos="0 0 0" mass="0.01" diaginertia="0.000001 0.000001 0.000001" />
+			</body> -->
+		</body>
+		<!--<body name="right_palm_left_camera_frame" pos="0.068377 0.013834 0.025" quat="-0.232742 0.667706 0.232742 0.667706" >
+			<inertial pos="0 0 0" mass="0.01" diaginertia="0.0001 0.0001 0.0001" />
+			<geom type="box" contype="0" pos="0 0 0" size="0.0015 0.005 0.0035" />
+			<site name="r_hand_camera_site" pos="0 0 0" quat="0.5 0.5 -0.5 -0.5" user="300" group="0"/>
+			<body name="right_palm_left_camera_optical_frame" pos="0 0 0" quat="0.5 -0.5 0.5 -0.5" >
+				<inertial pos="0 0 0" mass="0.001" diaginertia="0.000001 0.000001 0.000001" />
+			</body>
+		</body>
+		<body name="right_palm_right_camera_frame" pos="0.043513 0.045167 0.025" quat="-0.232742 0.667706 0.232742 0.667706" >
+			<inertial pos="0 0 0" mass="0.01" diaginertia="0.0001 0.0001 0.0001" />
+			<geom type="box" contype="0" pos="0 0 0" size="0.0015 0.005 0.0035" />
+			<body name="right_palm_right_camera_optical_frame" pos="0 0 0" quat="0.5 -0.5 0.5 -0.5"  user="-6005">
+				<inertial pos="0 0 0" mass="0.001" diaginertia="0.000001 0.000001 0.000001" />
+			</body>
+		</body>-->
+	</body>
+ </mujocoinclude>

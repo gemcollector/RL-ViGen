@@ -1,0 +1,34 @@
+<!-- ======================================================
+	This file is part of MuJoCo.     
+	Copyright 2009-2016 Roboti LLC.
+	
+	Model 		:: Sandia hands from Darpa Robotics challenge Package
+		Source		: https://bitbucket.org/osrf/drcsim
+		Downloaded	:
+		
+	Author		:: Vikash Kumar
+		Contacts 	: kumar@roboti.us
+		Last edits 	: 20Dec'15
+====================================================== -->
+
+<mujocoinclude>
+	<asset>
+		<mesh name="r_palm"		file="r_palm.stl"/>
+	</asset>
+	
+	<actuator>
+		<position name="A_right_f0_j0" joint="right_f0_j0"/>
+		<position name="A_right_f0_j1" joint="right_f0_j1"/>
+		<position name="A_right_f0_j2" joint="right_f0_j2"/>
+		<position name="A_right_f1_j0" joint="right_f1_j0"/>
+		<position name="A_right_f1_j1" joint="right_f1_j1"/>
+		<position name="A_right_f1_j2" joint="right_f1_j2"/>
+		<position name="A_right_f2_j0" joint="right_f2_j0"/>
+		<position name="A_right_f2_j1" joint="right_f2_j1"/>
+		<position name="A_right_f2_j2" joint="right_f2_j2"/>
+		<position name="A_right_f3_j0" joint="right_f3_j0"/>
+		<position name="A_right_f3_j1" joint="right_f3_j1"/>
+		<position name="A_right_f3_j2" joint="right_f3_j2"/>
+	</actuator>
+	
+</mujocoinclude>

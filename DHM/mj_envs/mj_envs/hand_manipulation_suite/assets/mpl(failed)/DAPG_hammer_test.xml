@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?><mujoco model="ADROIT-hammer(v1.5)">  
+    
+      <default>    
+            <default class="board">      
+                  <geom material="MatWood" type="box"/>      
+                  <general user="0 1 0.03 0.0939711 0.513477 0.0358776 1.23598 8.40409 0.485031 6.04244 1.02187 0.175297 0.121642 0 0 0"/>      
+            </default>    
+            <!--            for hammer 2-->    
+            <default class="hmr_base">      
+                  <joint armature="0.001" damping="2" limited="true"/>      
+                  <geom conaffinity="0" contype="0" group="1" type="mesh"/>      
+                  <position ctrllimited="true" ctrlrange="0 1.57"/>      
+                  <default class="hmr_viz">        
+                        <geom condim="4" type="mesh"/>        
+                  </default>      
+                  <default class="hmr_col">        
+                        <geom conaffinity="1" condim="3" contype="1" group="4" material="hmr_col" solimp="0.99 0.99 0.01" solref="0.01 1"/>        
+                  </default>      
+            </default>    
+      </default>  
+      <asset>    
+            
+            <texture builtin="checker" height="100" name="groundplane" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3" type="2d" width="100"/>    
+      </asset>  
+
+      <!-- ======= CONTACTS ======= -->  
+      <contact>    
+            <exclude body1="nail_board" body2="nail"/>    
+      </contact>  
+
+      <!-- ======= SENSORS ======= -->  
+      <sensor>    
+            <touch name="S_nail" site="S_target"/>    
+      </sensor>  
+
+      <!-- ======= WORLD ======= -->  
+      <worldbody>    
+            
+            <light diffuse=".7 .7 .3" dir="1 1.0 -4" directional="false" name="easy" pos="-1 -1.0 2.0" specular="0.03 0.03 0.03"/>
+            
+            <geom conaffinity="0" contype="1" material="groundplane" name="ground" pos="0 0 -1" size="1.5 1.5 0.25" type="plane"/>    
+            <camera name="fixed" pos="0 -0.7 0.7" quat="0.92388 0.382683 0 0"/>    
+            <!-- Camera for the VIL paper -->    
+            <camera name="vil_camera" pos="0 -1.2 1.2" quat="0.92388 0.382683 0 0"/>    
+            <camera euler="0 0 3.14" name="top" pos="0 0 1.1"/>    
+            <camera euler="-0.4 0.4 0" name="diagonally_above" pos="0.5 0.5 1.1"/>    
+            <camera euler="0.6 -0.85 3.14" name="side" pos="-0.55 -0.35 0.45"/>    
+            <!-- ======= TABLE ======= -->    
+            <body name="table">      
+                  <!-- <geom size="0.5 0.5 0.025" type="plane" material="table2d" /> -->             <!-- Plane has better contacts -->      
+                  <geom material="tablecube" pos="0 0 -0.025" size="0.45 0.45 0.025" type="box"/>      
+                  <geom conaffinity="0" contype="0" pos="0.4 0.4 -0.501" quat="0 1 0 0" size="0.04 0.5" type="cylinder"/>      
+                  <geom conaffinity="0" contype="0" pos="-0.4 0.4 -0.501" quat="0 1 0 0" size="0.04 0.5" type="cylinder"/>      
+                  <geom conaffinity="0" contype="0" pos="0.4 -0.4 -0.501" quat="0 1 0 0" size="0.04 0.5" type="cylinder"/>      
+                  <geom conaffinity="0" contype="0" pos="-0.4 -0.4 -0.501" quat="0 1 0 0" size="0.04 0.5" type="cylinder"/>      
+            </body>    
+        
+            <!-- ======= MOCAP ======= -->    
+            <body mocap="true" name="vive_tracker" pos="0 -0.35 0.25">      
+                  <inertial diaginertia="1.70667e-05 1.70667e-05 1.70667e-05" mass="0.064" pos="0 0 0"/>      
+                  <geom conaffinity="0" contype="0" group="3" rgba="0.3 0.3 0.3 0.3" size="0.03 0.01" type="cylinder"/>      
+            </body>    
+
+            <!-- ======= HAND ======= -->    
+            <body euler="-1.57 0 3.14" name="forearm" pos="0 -0.7 0.2">
+                  <inertial diaginertia="0.01 0.01 0.0075" mass="4" pos="0.001 -0.002 0.29" quat="0.982037 -0.0160006 0 -0.188007"/>
+                  <joint axis="1 0 0" damping="20" name="ARRx" pos="0 0 0" range="-0.4 0.25"/>
+                  <joint axis="0 1 0" damping="20" name="ARRy" pos="0 0 0" range="-0.3 0.3"/>
+                  <geom class="D_Vizual" euler="0 0 -1.57" mesh="forearm_simple" name="V_forearm" pos="0 -.01 .181"/>
+                  <geom class="DC_Hand" name="C_forearm1" pos="0 0 0.29" rgba="0.4 0.5 0.6 0.1" size="0.05 0.033" type="capsule"/>
+<!--            -->
+<!--&lt;!&ndash;                  &lt;!&ndash; ======= Adroit ======= &ndash;&gt;      &ndash;&gt;-->
+<!--&lt;!&ndash;                  <include file="DAPG_Adroit.xml"/>      &ndash;&gt;-->
+                  <include file="include_MPLchain.xml"/>
+            </body>
+<!--            <include file="include_MPLchain.xml"/>-->
+
+            <!-- ======= Nail ======= -->    
+            <body name="nail_board" pos="0.05 0 0.185245" quat="0.583833 0.583368 -0.399421 -0.399104" user="1001 0 2002 0.05 0 0.1 0.05 0 0.25">      
+                  <inertial diaginertia="0.00110933 0.00110933 0.00218453" mass="0.512" pos="0 0 0"/>      
+                  <geom class="board" name="board" size="0.08 0.08 0.01"/>      
+                  <site material="MatWood" name="nail_goal" pos="0 0 0.01" rgba="1 0.8 0.8 1" size="0.034 0.005" type="cylinder"/>      
+                  <body name="nail" pos="0 0 0">        
+                        <inertial diaginertia="8.23129e-05 8.23129e-05 2.51426e-05" mass="0.0699004" pos="0 0 0.0775281"/>        
+                        <joint axis="0 0 -1" frictionloss="2.5" name="nail_dir" pos="0 0 0" range="-0.01 0.09" type="slide"/>        
+                        <geom material="MatFoil" pos="0 0 0.1" size="0.035 0.005" type="cylinder"/>        
+                        <geom material="MatFoil" pos="0 0 0.05" size="0.01 0.05" type="cylinder"/>        
+                        <site name="S_target" pos="0 0 0.101" rgba="0 1 0 0.2" size="0.034 0.005" type="cylinder"/>        
+                  </body>      
+            </body>    
+
+            <!-- ======= Hammer 1======= -->    
+            
+
+            <!-- ======= Hammer 2======= -->    
+<!--            <body childclass="hmr_base" name="Object" pos="0 -0.2 0.055" quat="0.707388 0.706825 0 0">      -->
+<!--                  <freejoint/>      -->
+<!--                  <geom euler="0 1.57 0" material="hmr_red" name="HammerHandle" size="0.02 0.14" type="capsule"/>      -->
+<!--                  <geom euler="0 1.57 0" material="hmr_metal" pos="0.16 0 0" size="0.026 0.025" type="cylinder"/>      -->
+<!--                  <geom euler="1.57 0 0" material="hmr_metal" pos="0.16 0.026 0" size="0.02 0.015" type="cylinder"/>      -->
+<!--                  <geom euler="1.57 0 0" material="hmr_metal" pos="0.16 0.056 0" size="0.038 0.016" type="cylinder"/>      -->
+<!--                  <geom euler="1.57 0 0" material="hmr_metal" pos="0.16 -0.056 0" size="0.038 0.016" type="cylinder"/>      -->
+<!--                  <geom euler="1.57 0 0" material="hmr_metal" pos="0.16 -0.026 0" size="0.02 0.015" type="cylinder"/>      -->
+<!--                  <geom class="hmr_col" euler="0 1.57 0" mass=".1" size="0.02 0.14" type="capsule"/>      -->
+<!--                  <geom class="hmr_col" euler="0 1.57 0" mass=".2" pos="0.16 0 0.0" size="0.026 0.025" type="cylinder"/>      -->
+<!--                  <geom class="hmr_col" euler="1.57 0 0" mass=".1" pos="0.16 0.026 0" size="0.02 0.015" type="cylinder"/>      -->
+<!--                  <geom class="hmr_col" euler="1.57 0 0" mass=".3" pos="0.16 0.056 0" size="0.038 0.016" type="cylinder"/>      -->
+<!--                  <geom class="hmr_col" euler="1.57 0 0" mass=".3" pos="0.16 -0.056 0.0" size="0.038 0.016" type="cylinder"/>      -->
+<!--                  <geom class="hmr_col" euler="1.57 0 0" mass=".1" pos="0.16 -0.026 0.0" size="0.02 0.015" type="cylinder"/>      -->
+<!--                  <site group="4" name="tool" pos="-0.2 0 -0.04" rgba="0.4 0.8 0.4 1" size="0.01"/>      -->
+<!--            </body>    -->
+
+      </worldbody>  
+
+    
+      <actuator>
+            <general biasprm="0 -200 0" biastype="affine" ctrlrange="-.4 .25" gainprm="500 0 0" joint="ARRx" name="A_ARRx" user="1002 0 2001 -0.02 0.02 0 0 0 0 0 0 0 0 0 0 0"/>
+            <general biasprm="0 -200 0" biastype="affine" ctrlrange="-0.3 0.3" gainprm="500 0 0" joint="ARRy" name="A_ARRy"/>
+      </actuator>
+      <include file="DAPG_assets.xml"/>  
+</mujoco>

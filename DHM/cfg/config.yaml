@@ -1,0 +1,9 @@
+defaults:
+  - task:
+  - setting: setting
+  - _self_
+
+feature_type: hybrid  # pixel sensor hybrid
+channels_first: false  # true false
+image_height: 84
+image_width: 84

@@ -163,7 +163,8 @@ places_dataloader = None
 places_iter = None
 
 def load_config(key=None):
-    path = os.path.join('/home/yzc/shared/project/mujoco_manipulation/drqv2/cfgs', 'aug_config.cfg')
+    current_dir = os.path.dirname(__file__)
+    path = os.path.join(f'{current_dir}/cfgs', 'aug_config.cfg')
     with open(path) as f:
         data = json.load(f)
     if key is not None:

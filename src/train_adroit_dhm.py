@@ -29,6 +29,8 @@ from replay_buffer import ReplayBufferStorage, make_replay_loader
 from video import TrainVideoRecorder, VideoRecorder
 import pickle
 import time
+import sys
+sys.path.append('./algos')
 
 torch.backends.cudnn.benchmark = True
 
@@ -515,7 +517,7 @@ class Workspace:
         else:  # if at local
             container_log_path = self.work_dir
             # TODO should let user specific path to save to
-            amlt_path_to = '/home/yzc/shared/project/vrl3data/logs'
+            amlt_path_to = 'vrl3data/logs'
             copy_tree(str(container_log_path), amlt_path_to, update=1)
             # copytree(str(container_log_path), amlt_path_to, dirs_exist_ok=True, ignore=ignore_patterns('*.npy'))
         print("Data copied to:", amlt_path_to)
@@ -524,7 +526,7 @@ class Workspace:
         self.train_env.del_xml()
 
 
-@hydra.main(config_path='cfgs_adroit', config_name='sgqn_config')
+@hydra.main(config_path='cfgs_adroit', config_name='config')
 def main(cfg):
     # TODO potentially check the task name and decide which libs to load here?
 

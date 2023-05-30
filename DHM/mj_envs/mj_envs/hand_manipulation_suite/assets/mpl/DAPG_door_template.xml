@@ -1,0 +1,78 @@
+<mujoco model='ADROIT-door(v1.5)'>
+    <default>
+        <default class="table"/>
+    </default>
+
+    <asset>
+        <texture type="skybox" rgb1="0.42137 0.20392 0.50196" rgb2="0.42137 0.20392 0.50196" builtin="flat" width="200" height="200"/>
+        <texture type="2d" name="groundplane" builtin="checker" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3" width="100" height="100" />
+    </asset>
+
+    <!-- ======= HAND ======= -->
+    <include file="include_MPL.xml"/>
+    <include file="include_assets.xml"/>
+
+    <!-- ======= WORLD ======= -->
+    <worldbody>
+        <light name='original' directional='false' diffuse='.7 .7 .7' specular='0.03 0.03 0.03' pos='-1 -1.0 4.0' dir='1 1.0 -4'/>
+        <geom name='ground' size="1.5 1.5 0.25" pos="0 0 -1" type="plane" contype="1" conaffinity="0" material="groundplane" />
+        <camera name="fixed" pos="0 -0.7 0.7" quat="0.92388 0.382683 0 0" />
+        <!-- Camera for the VIL paper -->
+        <camera name="vil_camera" pos="0 -1.2 1.2" quat="0.92388 0.382683 0 0" />
+        <camera name="top" pos="0 0 1.5" euler="0 0 3.14" />
+        <camera name="diagonally_above" pos="0.5 0.5 1.1" euler="-0.4 0.4 0" />
+        <camera name="side" pos="-0.55 -0.35 0.45" euler="0.6 -0.85 3.14" />
+ 
+        <!-- ======= TABLE ======= -->
+        <body name="table" childclass="table">
+            <!-- <geom size="0.5 0.5 0.025" type="plane" material="table2d" /> --> <!-- Plane has better contacts -->
+            <geom size="0.45 0.45 0.025" pos="0 0 -0.025" type="box" material="tablecube" />
+            <geom size="0.04 0.5" pos="0.4 0.4 -0.501" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" />
+            <geom size="0.04 0.5" pos="-0.4 0.4 -0.501" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" />
+            <geom size="0.04 0.5" pos="0.4 -0.4 -0.501" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" />
+            <geom size="0.04 0.5" pos="-0.4 -0.4 -0.501" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" />
+        </body>
+        
+        <!-- ======= MOCAP ======= -->
+        <body name="vive_tracker" pos="0 -0.35 0.25" mocap="true">
+            <inertial pos="0 0 0" mass="0.064" diaginertia="1.70667e-05 1.70667e-05 1.70667e-05" />
+            <geom size="0.03 0.01" type="cylinder" contype="0" conaffinity="0" group="3" rgba="0.3 0.3 0.3 0.3" />
+        </body>
+
+        <!-- ======= DOOR ======= -->
+        <body name="frame" pos="-0.107339 0.0435293 0.447376" user="1001 0 2002 -0.4 -0.1 0.252 0 0.3 0.45">
+            <inertial pos="0.29 0 0" quat="0.5 0.5 0.5 0.5" mass="7.85398" diaginertia="0.923301 0.764585 0.168533" />
+            <geom size="0.05 0.25" pos="0.6 0 0" type="cylinder" material="MatWood" rgba="1 0 0 1" />
+            <geom size="0.05 0.25" pos="-0.02 0 0" type="cylinder" material="MatWood" rgba="1 0 0 1" />
+            <site name="S_handle_target" pos="0.75 -0.5 -.18" size="0.025" group='3'/>
+            <body name="door" pos="0.29 0 0">
+                <inertial pos="0.0296816 -0.00152345 0" quat="0.701072 0 0 0.713091" mass="2.43455" diaginertia="0.0913751 0.0521615 0.043714" />
+                <joint name="door_hinge" pos="0.31 0 0" axis="0 0 1" range="0 1.57" damping="1" frictionloss="2" />
+                <geom size="0.2 0.05 0.25" type="box" friction="1 1 1" material="MatWood" />
+                <geom size="0.05 0.25" pos="0.2 0 0" type="cylinder" material="MatWood" />
+                <geom size="0.05 0.25" pos="-0.2 0 0" type="cylinder" material="MatWood" />
+                <body name="latch" pos="-0.15 0 -0.025">
+                    <inertial pos="-0.017762 0.0138544 0" quat="0.365653 0.605347 -0.36522 0.605365" mass="3.53743" diaginertia="0.0483771 0.0410001 0.0111013" />
+                    <joint name="latch" pos="0 0 0" axis="0 1 0" range="0 1.8" frictionloss="5" />
+                    <geom size="0.05 0.15" quat="0.707388 0.706825 0 0" type="cylinder" material="MatFoil" />
+                    <geom size="0.02 0.1" pos="0.1 -0.15 0" quat="0.707388 0 0.706825 0" type="capsule" material="MatFoil" />
+                    <geom size="0.015 0.015 0.1" pos="0.1 -0.15 0" quat="0.707388 0 0.706825 0" type="box" material="MatFoil"/>
+                    <geom size="0.04 0.07" pos="-0.1 0.1 0" quat="0.707388 0 0.706825 0" type="capsule" material="MatFoil" />
+                    <site name="S_handle" pos="0.15 -0.15 0" size="0.025" group='3'/>
+                </body>
+            </body>
+        </body>
+
+    </worldbody>
+    
+    <actuator>
+        <general name="A_ARTx" joint="ARTx" ctrlrange="-0.25 0.25" biastype="affine" gainprm="500 0 0" biasprm="0 -200 0" />
+        <general name="A_ARTy" joint="ARTy" ctrlrange="0.0 0.2" biastype="affine" gainprm="500 0 0" biasprm="0 -200 0" />
+        <general name="A_ARTz" joint="ARTz" ctrlrange="-0.3 0.5" biastype="affine" gainprm="500 0 0" biasprm="0 -200 0" />
+        <general name="A_ARRx" joint="ARRx" ctrlrange="-.75 .75" biastype="affine" gainprm="500 0 0" biasprm="0 -200 0" />
+        <general name="A_ARRy" joint="ARRy" ctrlrange="-.75 .75" biastype="affine" gainprm="500 0 0" biasprm="0 -200 0" />
+        <general name="A_ARRz" joint="ARRz" ctrlrange="-.75 .75" biastype="affine" gainprm="500 0 0" biasprm="0 -200 0" />
+    </actuator>
+    <include file='DAPG_assets.xml'/>
+
+</mujoco>

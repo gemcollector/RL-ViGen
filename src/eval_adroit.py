@@ -69,7 +69,7 @@ class Workspace:
         print(cfg.wandb_group)
         self.agent_name = cfg.wandb_group.split('_')[1]
         self.cfg.task_name = self.cfg.task_name.split('-')[0]
-        work_dir = f'/home/yzc/shared/project/vrl3data/adroit_model/{self.cfg.task_name}/{self.agent_name}/{cfg.seed}'
+        work_dir = cfg.model_dir
         self.model_work_dir = work_dir
         num = 2000000 if self.cfg.task_name == 'pen' else 1000000
         device_id = self.cfg.device.split(':')[-1]

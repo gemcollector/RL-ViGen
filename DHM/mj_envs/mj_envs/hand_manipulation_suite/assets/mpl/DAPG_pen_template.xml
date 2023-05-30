@@ -1,0 +1,109 @@
+<mujoco model='ADROIT-pen(v1.5)'>
+    <default>
+        <default class="table"/>
+    </default>
+
+    <asset>
+        <texture type="skybox" rgb1="0.42137 0.20392 0.50196" rgb2="0.42137 0.20392 0.50196" builtin="flat" width="200" height="200"/>
+        <texture type="2d" name="groundplane" builtin="checker" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3" width="100" height="100" />
+    </asset>
+
+    <!-- ======= HAND ======= -->
+    <include file="include_MPL_flip.xml"/>
+    <include file="include_assets.xml"/>
+
+    <!-- ======= WORLD ======= -->
+    <worldbody>
+        <light name='original' directional='false' diffuse='.7 .7 .7' specular='0.03 0.03 0.03' pos='-1 -1.0 4.0' dir='1 1.0 -4'/>
+        <geom name='ground' size="1.5 1.5 0.25" pos="0 0 -1" type="plane" contype="1" conaffinity="0" material="groundplane" />
+        <camera name="fixed" pos="0 -0.7 0.7" quat="0.92388 0.382683 0 0" />
+        <!-- Cameras for the VIL paper -->
+        <camera name="vil_camera" pos="0 -0.8 0.8" quat="0.92388 0.382683 0 0" /> <!-- original -->
+<!--        <camera name="vil_camera" pos="0 -1.2 1.2" quat="0.92388 0.382683 0 0" /> &lt;!&ndash; like hammer and door &ndash;&gt;-->
+        <camera name="left" pos="0.4 -0.2 0.2" euler="0 1.57 1.57" />
+        <camera name="view_1" pos="-0.8 -0.8 0.8" euler="0.785 -0.785 -0.785" />
+        <camera name="view_2" pos="0 0.5 0.2" euler="-1.57 0 3.14" />
+        <camera name="view_3" pos="0 0.2 -0.2" euler="-2.35 0 3.14" />
+        <camera name="view_4" pos="0.4 -0.4 0.4" euler="0.785 0.785 0.785" />
+        <camera name="view_5" pos="0 -0.25 -0.4" euler="-3.2 0 3.14" />
+        <camera name="front" pos="0 0.4 0.2" euler="-1.57 0 3.14" />
+ 
+        <!-- ======= TABLE ======= -->
+        <body name="table" childclass="table">
+            <!-- <geom size="0.5 0.5 0.025" type="plane" material="table2d" /> --> <!-- Plane has better contacts -->
+            <geom size="0.45 0.45 0.025" pos="0 0 -0.025" type="box" material="tablecube" />
+            <geom size="0.04 0.5" pos="0.4 0.4 -0.501" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" />
+            <geom size="0.04 0.5" pos="-0.4 0.4 -0.501" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" />
+            <geom size="0.04 0.5" pos="0.4 -0.4 -0.501" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" />
+            <geom size="0.04 0.5" pos="-0.4 -0.4 -0.501" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" />
+        </body>
+        
+        <!-- ======= MOCAP ======= -->
+        <body name="vive_tracker" pos="0 -0.35 0.25" mocap="true">
+            <inertial pos="0 0 0" mass="0.064" diaginertia="1.70667e-05 1.70667e-05 1.70667e-05" />
+            <geom size="0.03 0.01" type="cylinder" contype="0" conaffinity="0" group="3" rgba="0.3 0.3 0.3 0.3" />
+        </body>
+
+
+        <!-- ======= PEN ======= -->
+        <site name="eps_ball" type="sphere" pos="0.0 -0.2 0.25" size="0.075" rgba="0 0 0 0" />
+        <body name="Object" pos="-0.00 -0.2 0.25" user="1001 0 2003 27 0 0 0.06 0 0" euler="0 1.57 0">
+            <joint name="OBJTx" pos="0 0 0" axis="1 0 0" type="slide" limited="false" damping="0" />
+            <joint name="OBJTy" pos="0 0 0" axis="0 1 0" type="slide" limited="false" damping="0" />
+            <joint name="OBJTz" pos="0 0 0" axis="0 0 1" type="slide" limited="false" damping="0" />
+            <joint name="OBJRx" pos="0 0 0" axis="1 0 0" limited="false" damping="0" />
+            <joint name="OBJRy" pos="0 0 0" axis="0 1 0" limited="false" damping="0" />
+            <joint name="OBJRz" pos="0 0 0" axis="0 0 1" limited="false" damping="0" />
+            <!-- <geom name="pen" type="cylinder" size="0.015 0.065" condim="4" rgba=".6 .6 .6 .6" density="1500" /> -->
+            <geom name="pen" type="cylinder" size="0.015 0.065" condim="4" material="penholder" density="1500" />
+
+            <geom name="top" type="cylinder" size="0.017 0.020" condim="4" pos="0 0 -.0455" rgba="0 .5 1 1" contype="0" conaffinity="0"/>
+            <geom name="bot" type="cylinder" size="0.013 0.002" pos="0 0 0.067" rgba="0 .5 1 1" contype="0" conaffinity="0"/>
+            <geom name="cli" type="box" size="0.004 0.006 0.03" pos="-.015 0 -.0255" rgba="0 .5 1 1" contype="0" conaffinity="0"/>
+
+            <site name="object_top" type="sphere" size="0.005" rgba="0.8 0.2 0.2 0" pos="0 0 0.065" />
+            <site name="object_bottom" type="sphere" size="0.005" rgba="0.2 0.8 0.2 0" pos="0 0 -0.065" />
+        </body>
+        <body name="Object" pos="-0.00 -0.2 0.25" user="1001 0 2003 27 0 0 0.06 0 0" euler="0 1.57 0">
+            <joint name="OBJTx" pos="0 0 0" axis="1 0 0" type="slide" limited="false" damping="0" />
+            <joint name="OBJTy" pos="0 0 0" axis="0 1 0" type="slide" limited="false" damping="0" />
+            <joint name="OBJTz" pos="0 0 0" axis="0 0 1" type="slide" limited="false" damping="0" />
+            <joint name="OBJRx" pos="0 0 0" axis="1 0 0" limited="false" damping="0" />
+            <joint name="OBJRy" pos="0 0 0" axis="0 1 0" limited="false" damping="0" />
+            <joint name="OBJRz" pos="0 0 0" axis="0 0 1" limited="false" damping="0" />
+            <!-- <geom name="pen" type="cylinder" size="0.015 0.065" condim="4" rgba=".6 .6 .6 .6" density="1500" /> -->
+            <geom name="pen" type="cylinder" size="0.010 0.085" condim="4" density="1500" material="penholder"/>
+            <geom name="top" type="cylinder" size="0.012 0.020" condim="4" pos="0 0 -.0655" rgba="0 .5 1 1" contype="0" conaffinity="0"/>
+            <geom name="bot" type="cylinder" size="0.011 0.002" pos="0 0 0.087" rgba="0 .5 1 1" contype="0" conaffinity="0"/>
+            <site name="object_top" type="sphere" size="0.005" rgba="0.8 0.2 0.2 0" pos="0 0 0.085" />
+            <site name="object_bottom" type="sphere" size="0.005" rgba="0.2 0.8 0.2 0" pos="0 0 -0.085" />
+        </body>
+
+        <body name="target" pos="0.2 -0.2 0.25" >
+            <site name="target_top" type="sphere" size="0.005" rgba="0.8 0.2 0.2 0" pos="0 0 0.065" />
+            <site name="target_bottom" type="sphere" size="0.005" rgba="0.2 0.8 0.2 0" pos="0 0 -0.065" />
+            <!-- <geom name="target" type="cylinder" size="0.015 0.065" condim="4" rgba=".6 .6 .6 .3" /> -->
+            <geom name="target" type="cylinder" size="0.015 0.065" condim="4" material="penholder" />
+            <geom name="t_top" type="cylinder" size="0.017 0.020" condim="4" pos="0 0 -.0455" rgba="0 1 .5 1" contype="0" conaffinity="0"/>
+            <geom name="t_bot" type="cylinder" size="0.013 0.002" pos="0 0 0.067" rgba="0 1 .5 1" contype="0" conaffinity="0"/>
+            <geom name="t_cli" type="box" size="0.004 0.006 0.03" pos="-.015 0 -.0255" rgba="0 1 .5 1" contype="0" conaffinity="0"/>
+        </body>
+        <body name="target" pos="0.2 -0.2 0.25" >
+            <site name="target_top" type="sphere" size="0.005" rgba="0.8 0.2 0.2 0" pos="0 0 0.085" />
+            <site name="target_bottom" type="sphere" size="0.005" rgba="0.2 0.8 0.2 0" pos="0 0 -0.085" />
+            <!-- <geom name="target" type="cylinder" size="0.015 0.065" condim="4" rgba=".6 .6 .6 .3" /> -->
+            <geom name="target" type="cylinder" size="0.010 0.085" condim="4" material="penholder"/>
+            <geom name="t_top" type="cylinder" size="0.012 0.020" condim="4" pos="0 0 -.0655" rgba="0 1 .5 1" contype="0" conaffinity="0"/>
+            <geom name="t_bot" type="cylinder" size="0.011 0.002" pos="0 0 0.087" rgba="0 1 .5 1" contype="0" conaffinity="0"/>
+        </body>
+    </worldbody>
+    <actuator>
+        <general name="A_ARTx" joint="ARTx" ctrlrange="-0.25 0.25" biastype="affine" gainprm="500 0 0" biasprm="0 -200 0" />
+        <general name="A_ARTy" joint="ARTy" ctrlrange="0.0 0.2" biastype="affine" gainprm="500 0 0" biasprm="0 -200 0" />
+        <general name="A_ARTz" joint="ARTz" ctrlrange="-0.3 0.5" biastype="affine" gainprm="500 0 0" biasprm="0 -200 0" />
+        <general name="A_ARRx" joint="ARRx" ctrlrange="-.75 .75" biastype="affine" gainprm="500 0 0" biasprm="0 -200 0" />
+        <general name="A_ARRy" joint="ARRy" ctrlrange="-.75 .75" biastype="affine" gainprm="500 0 0" biasprm="0 -200 0" />
+        <general name="A_ARRz" joint="ARRz" ctrlrange="-.75 .75" biastype="affine" gainprm="500 0 0" biasprm="0 -200 0" />
+    </actuator>
+    <include file='DAPG_assets.xml'/>
+</mujoco>

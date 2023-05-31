@@ -1,6 +1,7 @@
 save_snapshot=False
 use_wandb=False
 env='carla'
+model_dir=/home/yzc/shared/project/mujoco_manipulation/drqv2/exp_local/carla_model/
 
 if [ "$env" = "robosuite" ]; then
 task_name='TwoArmPegInHole'
@@ -9,6 +10,7 @@ action_repeat=1
 CUDA_VISIBLE_DEVICES=1  python eval.py \
               env=${env} \
               task=${task_name} \
+              model_dir=${model_dir} \
               seed=5 \
               action_repeat=${action_repeat} \
               use_wandb=${use_wandb} \
@@ -24,6 +26,7 @@ elif [ "$env" = "habitat" ]; then
   CUDA_VISIBLE_DEVICES=7  python eval.py \
                 env=${env} \
                 task@_global_='habitat' \
+                model_dir=${model_dir} \
                 seed=3 \
                 action_repeat=${action_repeat} \
                 use_wandb=${use_wandb} \
@@ -37,10 +40,11 @@ task_name='carla'
 test_agent='test_pieg'
 action_repeat=2
 
-LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libffi.so.7 CUDA_VISIBLE_DEVICES=1  python eval.py \
+LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libffi.so.7 CUDA_VISIBLE_DEVICES=2  python eval.py \
                                                                     env=${env} \
                                                                     task=${task_name} \
-                                                                    seed=5 \
+                                                                    model_dir=${model_dir} \
+                                                                    seed=3 \
                                                                     action_repeat=${action_repeat} \
                                                                     use_wandb=${use_wandb} \
                                                                     use_tb=False \

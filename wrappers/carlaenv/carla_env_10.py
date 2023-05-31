@@ -16,9 +16,9 @@ import time
 from PIL import Image
 from PIL.PngImagePlugin import PngImageFile, PngInfo
 
-sys.path.append('/home/yzc/shared/CARLA_0.9.10/PythonAPI/')
-sys.path.append('/home/yzc/shared/CARLA_0.9.10/PythonAPI/carla')
-sys.path.append('/home/yzc/shared/CARLA_0.9.10/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg')
+sys.path.append('./third_party/CARLA_0.9.10/PythonAPI/')
+sys.path.append('./third_party/CARLA_0.9.10/PythonAPI/carla')
+sys.path.append('./third_party/CARLA_0.9.10/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg')
 try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,

@@ -34,6 +34,7 @@ lr: 1e-4
 feature_dim: 50
 use_wandb: false
 wandb_group: None
+model_dir: none
 
 agent:
   _target_: algos.drqv2.DrQV2Agent

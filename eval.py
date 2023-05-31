@@ -56,7 +56,7 @@ class Workspace:
         self.level = cfg.wandb_group.split('_')[0]
         assert self.level in ['train', 'test']
         self.agent_name = cfg.wandb_group.split('_')[1]
-        work_dir = f'/home/yzc/shared/project/mujoco_manipulation/drqv2/exp_local/carla_model/{self.agent_name}/{cfg.seed}'
+        work_dir = f'{cfg.model_dir}/{self.agent_name}/{cfg.seed}'
         self.model_work_dir = work_dir
         agent = torch.load('%s/snapshot.pt' % (work_dir), map_location='cuda:0')
         self.agent = agent['agent']
@@ -327,7 +327,7 @@ class Workspace:
             self.__dict__[k] = v
 
 
-@hydra.main(config_path='cfgs', config_name='pieg_config')
+@hydra.main(config_path='cfgs', config_name='config')
 def main(cfg):
     from eval import Workspace as W
     root_dir = Path.cwd()

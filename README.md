@@ -157,7 +157,7 @@ bash scripts/carlatrain.sh
 ```
 
 ## Evaluation
-For `Robosuite` , `Habitat`, and `CARLA`, we can run the evaluation code as follow:
+For evaluation, you should change `model_dir` to your own saved model folder first. Regarding  `Robosuite` , `Habitat`, and `CARLA`, we can run the evaluation code as follow:
 ```
 cd RL-ViGen/
 bash scripts/eval.sh 
@@ -171,6 +171,10 @@ bash scripts/locoeval.sh
 ```
 
 For more details, please refer to the `README.md` files for each environment in the `env/` directory.
+
+
+alll the Adroit configureation is on the branch `ViGen-adroit`.
+
 
 ## Change Log
 * **[06-01-2023]** Initial code release.

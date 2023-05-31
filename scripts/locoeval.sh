@@ -4,4 +4,4 @@ CUDA_VISIBLE_DEVICES=5 python3 locoeval.py \
 	--seed 5 \
 	--domain_name $2 \
 	--task_name $3 \
-	--model_dir /home/yzc/shared/project/mujoco_manipulation/drqv2/exp_local/loco_model/
+	--model_dir /to/your/path

@@ -1,5 +1,5 @@
 <mujoco model="anymal_c">
-  <compiler angle="radian" meshdir="/home/yzc/shared/project/mujoco_manipulation/mujoco_menagerie/anybotics_anymal_c/assets" texturedir="/home/yzc/shared/project/mujoco_manipulation/mujoco_menagerie/anybotics_anymal_c/assets" autolimits="true"/>
+  <compiler angle="radian" meshdir="project/mujoco_manipulation/mujoco_menagerie/anybotics_anymal_c/assets" texturedir="/project/mujoco_manipulation/mujoco_menagerie/anybotics_anymal_c/assets" autolimits="true"/>
 
   <option cone="elliptic" impratio="100"/>
 

@@ -1,6 +1,6 @@
 <mujoco model="anymal_c scene">
 
-  <include file="/home/yzc/shared/project/mujoco_manipulation/mujoco_menagerie/anybotics_anymal_c/anymal_c.xml"/>
+  <!-- <include file="project/mujoco_manipulation/mujoco_menagerie/anybotics_anymal_c/anymal_c.xml"/> -->
 
   <visual>
     <headlight diffuse="0.6 0.6 0.6"  ambient="0.3 0.3 0.3" specular="0 0 0"/>

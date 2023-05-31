@@ -42,6 +42,12 @@ def make_env_10_eval(action_repeat):
         cfg = compose(config_name="carlaenv10_eval_config")
         cfg_dict = omegaconf_to_dict(cfg)
     cfg_dict['frame_skip'] = action_repeat
+    if cfg_dict['scenario'] == 'tunnel':
+        cfg_dict['num_other_cars'] = 5
+        cfg_dict['num_other_cars_nearby'] = 2
+    elif cfg_dict['scenario'] == 'narrow' or cfg_dict['scenario'] == 'roundabout':
+        cfg_dict['num_other_cars'] = 5
+        cfg_dict['num_other_cars_nearby'] = 0
     env = CarlaEnv10_eval(cfg_dict)
     return env
 

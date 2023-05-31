@@ -2,8 +2,8 @@ defaults:
   - setting: setting
 
 ip: localhost
-port: 2018
-traffic_manager_port: 8018
+port: 2042
+traffic_manager_port: 8042
 max_episode_steps: 1000
 frame_skip: 2
 render_display: 0  # 0, 1

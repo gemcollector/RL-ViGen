@@ -1,6 +1,6 @@
 conda install habitat-sim==0.2.3 withbullet headless -c conda-forge -c aihabitat -y
 cd envs/habitatVGB/ && pip install -e habitat-lab
-pip install -e envs/habitatVGB/
+cd ../../ && pip install -e envs/habitatVGB/
 pip install mujoco==2.3.0
 pip install dm-control==1.0.8
 pip install glfw==1.12.0

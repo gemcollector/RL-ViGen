@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: robosuite
+Version: 1.4.0
+Summary: robosuite: A Modular Simulation Framework and Benchmark for Robot Learning
+Home-page: https://github.com/ARISE-Initiative/robosuite
+Author: Yuke Zhu
+Author-email: yukez@cs.utexas.edu
+Requires-Python: >=3
+Description-Content-Type: text/markdown

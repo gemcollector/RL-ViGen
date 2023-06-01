@@ -11,7 +11,7 @@ pip3 install torch==1.12.1+cu116 torchvision==0.13.1+cu116 --extra-index-url htt
 pip install termcolor==1.1.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install tb-nightly -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install imageio==2.9.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
-pip inatll imageio-ffmpeg==0.4.4 -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install imageio-ffmpeg==0.4.4 -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install hydra-core==1.1.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install hydra-submitit-launcher==1.1.5 -i https://pypi.tuna.tsinghua.edu.cn/simple
 pip install pandas==1.3.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
@@ -31,3 +31,5 @@ pip install h5py
 pip install gym==0.23.1
 pip install dotmap==1.3.30
 pip install pygame==2.1.2
+pip install dm-env==1.6
+pip install dm-tree==0.1.8

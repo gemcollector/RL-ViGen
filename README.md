@@ -1,7 +1,7 @@
 
 
 # RL-ViGen: A Reinforcement Learning Benchmark for visual generalization
-[Website] | [Paper]
+[Website](https://gemcollector.github.io/RL-ViGen/) | [Paper]
 
 We have released RL-ViGen -- a **R**einforcement **L**earning Benchmark for **Vi**sual **Gen**eralization. It specifically specifically designs to tackle the visual generalization problem.
 Our benchmark comprises five major task categories, namely, manipulation, navigation, autonomous driving, locomotion, and dexterous manipulation. Concurrently, it encompasses five classes of generalization types: visual appearances, camera views, lighting changes, scene structures, and cross-embodiments. Furthermore, RL-ViGen integrates seven of the most currently favored visual RL and generalization algorithms, solidifying its broad applicability in the field.

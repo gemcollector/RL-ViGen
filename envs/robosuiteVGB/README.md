@@ -40,7 +40,16 @@ you can run `test/env_test.py` to test the environment as well.
 - `robots`:  specify your robot arm type.
 
 
-More infomation and details can be found at [Robosuite](https://robosuite.ai/docs/) official website.
+
+## Task Description
+In our paper, three tasks including single-arm and dual-arm settings are selected in RL-ViGen: **Door**, **Lift**, and **TwoArmPegInhole**. Additionally, we create multiple difficulty levels, incorporating various visual scenarios, dynamic backgrounds, aiming for more comprehensively evaluating the agent's generalization ability. 
+
+
+
+
+
+
+More infomation and details can be found at our paper [Robosuite](https://robosuite.ai/docs/) official website.
 
 
 

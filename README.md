@@ -1,6 +1,6 @@
 
 
-# RL-ViGen: A Reinforcement Learning Benchmark for visual generalization
+# RL-ViGen: A Reinforcement Learning Benchmark for Visual Generalization
 [Website](https://gemcollector.github.io/RL-ViGen/) | [Paper]
 
 We have released RL-ViGen -- a **R**einforcement **L**earning Benchmark for **Vi**sual **Gen**eralization. It specifically specifically designs to tackle the visual generalization problem.

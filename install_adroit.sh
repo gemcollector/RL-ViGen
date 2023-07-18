@@ -10,8 +10,10 @@ pip install absl-py==0.13.0 pyparsing==2.4.7 jupyterlab==3.0.14 scikit-image \
 #    && pip install -e mj_envs/. \
 #    && pip install -e mjrl/.
 pip install joblib==1.2.0
+cd .. 
 cd DHM && pip install -e .
-pip DHM/mjrl && pip install -e .
-pip install -e ./DHM/mj_envs/
+cd mjrl && pip install -e .
+cd ../mj_envs
+pip install -e .
 pip install glfw==1.12.0
 pip install xmltodict

@@ -177,6 +177,7 @@ alll the Adroit configureation is on the branch `ViGen-adroit`.
 
 
 ## Change Log
+* **[07-20-2023]** Accelerate the speed of DMcontrol in video background setting. 
 * **[06-01-2023]** Initial code release.
 
 

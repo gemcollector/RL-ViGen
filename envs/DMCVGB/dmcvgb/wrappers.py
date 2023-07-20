@@ -128,6 +128,10 @@ class ColorWrapper(gym.Wrapper):
 			domain_name = 'mujoco_menagerie/unitree_a1/scene_' + self._get_dmc_wrapper()._task_name
 			if self._table_texure != 'original':
 				setting_kwargs['ground_texture'] = 'table_' + self._table_texure + str(self._random_state.randint(10))
+		if domain_name == 'anymal':
+			domain_name = 'mujoco_menagerie/anybotics_anymal_c/scene_' + self._get_dmc_wrapper()._task_name
+			if self._table_texure != 'original':
+				setting_kwargs['ground_texture'] = 'table_' + self._table_texure + str(self._random_state.randint(10))
 		if domain_name == 'franka':
 			domain_name = 'mujoco_menagerie/franka_emika_panda/scene_' + self._get_dmc_wrapper()._task_name
 			if self._table_texure != 'original':
@@ -213,7 +217,7 @@ class FrameStack(gym.Wrapper):
 
 	def step(self, action):
 		obs, reward, done, info = self.env.step(action)
-		# obs, reward, done, _, info = self.env.step(action)  
+		# obs, reward, done, _, info = self.env.step(action)  # yangsizhe
 		self._frames.append(obs)
 		return self._get_obs(), reward, done, info
 
@@ -242,41 +246,30 @@ def rgb_to_hsv(r, g, b):
 	h = (h/6.0) % 1.0
 	return h, s, v
 
-import matplotlib.pyplot as plt
-def do_green_screen(x, bg):
+# import matplotlib.pyplot as plt
+
+def do_green_screen(img, bg):
 	"""Removes green background from observation and replaces with bg; not optimized for speed"""
-	assert isinstance(x, np.ndarray) and isinstance(bg, np.ndarray), 'inputs must be numpy arrays'
-	assert x.dtype == np.uint8 and bg.dtype == np.uint8, 'inputs must be uint8 arrays'
-	# plt.figure(dpi=300)
-	# plt.imshow(x.swapaxes(0, 1).swapaxes(1, 2))
-	# plt.show()
-	# Get image sizes
-	x_h, x_w = x.shape[1:]
+	assert isinstance(img, np.ndarray) and isinstance(bg, np.ndarray), 'inputs must be numpy arrays'
+	assert img.dtype == np.uint8 and bg.dtype == np.uint8, 'inputs must be uint8 arrays'
+	fixedRGB = np.array([0, 0, 0], dtype='uint8')
+	if img.shape[0] == 3:
+		img = img.transpose(1, 2, 0)
+		# idx = np.where((img[:][:] == fixedRGB).all(axis=2), 1, 0)
+		idx = np.where((img[:][:] == fixedRGB).all(axis=2), np.array(1, dtype=np.uint8),
+					   np.array(0, dtype=np.uint8))
+		idx = np.array([idx, idx, idx])
+		img = img.transpose(2, 0, 1)
+		img = (1 - idx) * img + idx * bg
+		return img
+	else:
+		idx = np.where((img[:][:] == fixedRGB).all(axis=2), np.array(1, dtype=np.uint8),
+					   np.array(0, dtype=np.uint8))
+		idx = np.array([idx, idx, idx])
+		img = img.transpose(2, 0, 1)
+		img = (1 - idx) * img + idx * bg
+		return img.transpose(1, 2, 0)
 
-	# Convert to RGBA images
-	im = TF.to_pil_image(torch.ByteTensor(x))
-	im = im.convert('RGBA')
-	pix = im.load()
-	bg = TF.to_pil_image(torch.ByteTensor(bg))
-	bg = bg.convert('RGBA')
-	bg = bg.load()
-
-	# Replace pixels
-	for x in range(x_w):
-		for y in range(x_h):
-			r, g, b, a = pix[x, y]
-			h_ratio, s_ratio, v_ratio = rgb_to_hsv(r / 255., g / 255., b / 255.)
-			h, s, v = (h_ratio * 360, s_ratio * 255, v_ratio * 255)
-
-			# min_h, min_s, min_v = (100, 80, 70)
-			# max_h, max_s, max_v = (185, 255, 255)
-			# min_h, min_s, min_v = (130, 110, 100)
-			# max_h, max_s, max_v = (155, 225, 225)
-			# if min_h <= h <= max_h and min_s <= s <= max_s and min_v <= v <= max_v:  # replace the range of rgb
-			if r == g == b == 0:
-				pix[x, y] = bg[x, y]
-
-	return np.moveaxis(np.array(im).astype(np.uint8), -1, 0)[:3]
 
 
 class VideoWrapper(gym.Wrapper):
@@ -365,3 +358,14 @@ class VideoWrapper(gym.Wrapper):
 		if channels_last:
 			obs = torch.from_numpy(obs).permute(1,2,0).numpy()
 		return obs
+
+	def render(self, mode='rgb_array', height=224, width=224, camera_id=0):
+		img = self.env.render(mode='rgb_array', height=height, width=width, camera_id=camera_id)
+
+		if self._background['type'] == 'video':
+			bg = self._data[self._current_frame % len(self._data)]  # select frame
+			bg = self._interpolate_bg(bg, img.shape[:2])  # scale bg to observation size
+			return do_green_screen(img, bg)  # apply greenscreen
+		return img
+
+

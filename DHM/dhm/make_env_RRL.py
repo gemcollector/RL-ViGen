@@ -207,7 +207,8 @@ class ExtendedTimeStepWrapper(dm_env.Environment):
 
 
 _mj_envs = {'pen-adroit-v0', 'hammer-adroit-v0', 'door-adroit-v0', 'relocate-adroit-v0',
-            'pen-mpl-v0', 'hammer-mpl-v0', 'door-mpl-v0', 'relocate-mpl-v0'}
+            'pen-mpl-v0', 'hammer-mpl-v0', 'door-mpl-v0', 'relocate-mpl-v0',
+            'pen-barrett-v0', 'hammer-barrett-v0', 'door-barrett-v0', 'relocate-barrett-v0'}
 
 
 ## DHMEnv: parse config file, modify mjcf, and provide api

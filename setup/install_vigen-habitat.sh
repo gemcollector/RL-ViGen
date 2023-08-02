@@ -5,7 +5,7 @@ pip install mujoco==2.3.0
 pip install dm-control==1.0.8
 pip install glfw==1.12.0
 pip3 install torch==1.12.1+cu116 torchvision==0.13.1+cu116 --extra-index-url https://download.pytorch.org/whl/cu116
-pip install tb-nightly -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install tb-nightly
 pip install termcolor==1.1.0
 pip install scipy==1.10.0
 pip install ipdb

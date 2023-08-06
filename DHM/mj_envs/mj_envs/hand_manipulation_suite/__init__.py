@@ -105,36 +105,36 @@ from mj_envs.hand_manipulation_suite.relocate_barrett_v0 import RelocateBarrettE
 
 ## shadowhand
 # Swing the door open
-register(
-    id='door-shadowhand-v0',
-    entry_point='mj_envs.hand_manipulation_suite:DoorShadowhandEnvV0',
-    max_episode_steps=200,
-)
-from mj_envs.hand_manipulation_suite.door_shadowhand_v0 import DoorShadowhandEnvV0
+# register(
+#     id='door-shadowhand-v0',
+#     entry_point='mj_envs.hand_manipulation_suite:DoorShadowhandEnvV0',
+#     max_episode_steps=200,
+# )
+# from mj_envs.hand_manipulation_suite.door_shadowhand_v0 import DoorShadowhandEnvV0
 
-# Hammer a nail into the board
-register(
-    id='hammer-shadowhand-v0',
-    entry_point='mj_envs.hand_manipulation_suite:HammerShadowhandEnvV0',
-    max_episode_steps=200,
-)
-from mj_envs.hand_manipulation_suite.hammer_shadowhand_v0 import HammerShadowhandEnvV0
+# # Hammer a nail into the board
+# register(
+#     id='hammer-shadowhand-v0',
+#     entry_point='mj_envs.hand_manipulation_suite:HammerShadowhandEnvV0',
+#     max_episode_steps=200,
+# )
+# from mj_envs.hand_manipulation_suite.hammer_shadowhand_v0 import HammerShadowhandEnvV0
 
-# Reposition a pen in hand
-register(
-    id='pen-shadowhand-v0',
-    entry_point='mj_envs.hand_manipulation_suite:PenShadowhandEnvV0',
-    max_episode_steps=100,
-)
-from mj_envs.hand_manipulation_suite.pen_shadowhand_v0 import PenShadowhandEnvV0
+# # Reposition a pen in hand
+# register(
+#     id='pen-shadowhand-v0',
+#     entry_point='mj_envs.hand_manipulation_suite:PenShadowhandEnvV0',
+#     max_episode_steps=100,
+# )
+# from mj_envs.hand_manipulation_suite.pen_shadowhand_v0 import PenShadowhandEnvV0
 
-# Relcoate an object to the target
-register(
-    id='relocate-shadowhand-v0',
-    entry_point='mj_envs.hand_manipulation_suite:RelocateShadowhandEnvV0',
-    max_episode_steps=200,
-)
-from mj_envs.hand_manipulation_suite.relocate_shadowhand_v0 import RelocateShadowhandEnvV0
+# # Relcoate an object to the target
+# register(
+#     id='relocate-shadowhand-v0',
+#     entry_point='mj_envs.hand_manipulation_suite:RelocateShadowhandEnvV0',
+#     max_episode_steps=200,
+# )
+# from mj_envs.hand_manipulation_suite.relocate_shadowhand_v0 import RelocateShadowhandEnvV0
 
 
 

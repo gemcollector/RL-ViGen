@@ -1,0 +1,9 @@
+__pycache__/
+algos/__pycache__/
+exp_local/
+envs/habitatVGB/data/
+envs/DMCVGB/build/
+envs/DMCVGB/dm_control/build/
+envs/DMCVGB/dm_control/*.egg-info/
+envs/habitatVGB/*.egg-info/
+envs/robosuiteVGB/*.egg-info/

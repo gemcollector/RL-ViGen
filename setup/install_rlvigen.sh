@@ -26,7 +26,7 @@ pip install scipy==1.9.3
 pip install numpy==1.19.2
 pip install protobuf==3.20.3
 cd ../../../ && cd third_party/robosuite && pip install -r requirements.txt
-pip install -e ./envs/robosuiteVGB
+cd ../../ & pip install -e ./envs/robosuiteVGB/
 pip install h5py
 pip install gym==0.23.1
 pip install dotmap==1.3.30

@@ -2,9 +2,7 @@ README.md
 setup.py
 robosuitevgb/__init__.py
 robosuitevgb/utils.py
-robosuitevgb/vgb_wrapper-copy.py
 robosuitevgb/vgb_wrapper.py
-robosuitevgb/vgb_wrapper1.py
 robosuitevgb/vgb_wrapper_rs100.py
 robosuitevgb.egg-info/PKG-INFO
 robosuitevgb.egg-info/SOURCES.txt

@@ -38,3 +38,24 @@ bash setup/install_vigen-habitat.sh
 
 2. Next we need the episode dataset for the experiments. You can get the training and validation dataset from [here](https://dl.fbaipublicfiles.com/habitat/data/datasets/pointnav/gibson/v1/pointnav_gibson_v1.zip) and place it in the ./data folder under the path : `data/datasets/pointnav/gibson/v1/`.
 
+
+## Installation all in one
+
+We provide a script to install all the dependencies and resources required for RL-ViGen. You can run the following command to install:
+
+```
+bash setup/install_all.sh
+```
+If you are employing this method of installation, please modify all the  `train` and `eval` scripts, ensuring that the parameter `task` is set to `task@_global_`. Here is an example:
+
+```
+CUDA_VISIBLE_DEVICES=0  python train.py \
+						env=${env} \
+						task@_global_=${task_name}
+```
+
+
+## Installation with Docker
+```
+docker pull cititude/rl-vigen:1.0
+```

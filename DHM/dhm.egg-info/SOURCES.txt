@@ -1,4 +1,3 @@
-README.md
 setup.py
 dhm/__init__.py
 dhm/make_env.py

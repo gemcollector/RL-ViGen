@@ -40,5 +40,10 @@ env = make_env_10(action_repeat)
 - `vehicle`: the controlled vehicle type.
 
 
+### Visualization
+Since the CARLA engine is based on Unreal Engine, we recommend you to render the images with a monitor. You can set the `render_display` param to 1 to render the images.
+
+
+
 
 More infomation and details can be found at [CARLA](http://carla.org/) official website.

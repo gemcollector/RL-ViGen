@@ -603,7 +603,6 @@ class CarlaEnv10(object):
         for response in self.client.apply_batch_sync(batch):
             if response.error:
                 pass
-                # print(response.error)
             else:
                 self.vehicle_list.append(response.actor_id)
 
@@ -700,16 +699,7 @@ class CarlaEnv10(object):
         else:
             throttle, steer, brake = 0., 0., 0.
 
-        # Advance the simulation and wait for the data.
-        # if self.render_display:
-        #     snapshot, image_rgb, image_rl, image_rl_left, image_rl_lefter, image_rl_right, image_rl_righter, image_rl_side_left, image_rl_side_right, image_rl_backsight, image_rl_above = self.sync_mode.tick(
-        #         timeout=2.0)
-        #     # snapshot, image_rgb, image_rl, image_rl_left, image_rl_lefter, image_rl_right, image_rl_righter, ray_cast = self.sync_mode.tick(timeout=2.0)
-        #     # yang = ray_cast
-        # else:
-        #     # , image_rl_side_left, image_rl_side_right, image_rl_backsight, image_rl_above
-        #     snapshot, image_rl, image_rl_left, image_rl_lefter, image_rl_right, image_rl_righter = self.sync_mode.tick(
-        #         timeout=2.0)
+
         snapshot_image_list = self.sync_mode.tick(timeout=8.0)
         snapshot = snapshot_image_list[0]
         ims = snapshot_image_list[1:]
@@ -771,22 +761,6 @@ class CarlaEnv10(object):
             pygame.display.flip()
 
         rgbs = []
-        # ims = []
-        # if 'foresight0' in self.cameras:
-        #     ims.append(image_rl)
-        # if 'foresight1' in self.cameras:
-        #     ims.append(image_rl_left)
-        #     ims.append(image_rl_right)
-        # if 'foresight2' in self.cameras:
-        #     ims.append(image_rl_lefter)
-        #     ims.append(image_rl_righter)
-        # if 'backsight' in self.cameras:
-        #     ims.append(image_rl_backsight)
-        # if 'side' in self.cameras:
-        #     ims.append(image_rl_side_left)
-        #     ims.append(image_rl_side_right)
-        # if 'above' in self.cameras:
-        #     ims.append(image_rl_above)
 
 
         for im in ims:
@@ -811,22 +785,10 @@ class CarlaEnv10(object):
             metadata.add_text("brake", str(brake))
             im.save(image_name, "PNG", pnginfo=metadata)
 
-            # # Example usage:
-            # from PIL.PngImagePlugin import PngImageFile
-            # im = PngImageFile("rl00001234.png")
-            # # Actions are stored in the image's metadata:
-            # print("Actions: %s" % im.text)
-            # throttle = float(im.text['throttle'])  # range [0, 1]
-            # steer = float(im.text['steer'])  # range [-1, 1]
-            # brake = float(im.text['brake'])  # range [0, 1]
         self.count += 1
 
         next_obs = rgb  # (84 x 252 x 3) or (84 x 420 x 3)
-        # debugging - to inspect images:
-        # import matplotlib.pyplot as plt
-        # import pdb; pdb.set_trace()
-        # plt.imshow(next_obs)
-        # plt.show()
+
         next_obs = np.transpose(next_obs, [2, 0, 1])  # 3 x 84 x 84/252/420
         assert next_obs.shape == self.observation_space.shape
         if self.count >= self._max_episode_steps:
@@ -846,8 +808,6 @@ class CarlaEnv10(object):
             actor.destroy()
         print('\ndestroying %d vehicles' % len(self.vehicle_list))
         self.client.apply_batch([carla.command.DestroyActor(x) for x in self.vehicle_list])
-        # print('\ndestroying %d pedestrians' % len(self.pedestrian_list))
-        # self.client.apply_batch([carla.command.DestroyActor(x) for x in self.pedestrian_list])
         time.sleep(0.5)
         pygame.quit()
         print('done.')

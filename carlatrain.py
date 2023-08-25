@@ -68,11 +68,8 @@ class Workspace:
         # create logger
         self.logger = Logger(self.work_dir, use_tb=self.cfg.use_tb, use_wandb=self.cfg.use_wandb)
         # create envs
-        # train_env = make_env_10()
-        # self.train_env = ExtendedTimeStepWrapper(FrameStack(train_env, 3))
         self.train_env = carla_make(action_repeat=self.cfg.action_repeat)
-        # self.eval_env = dmc.make(self.cfg.task_name, self.cfg.frame_stack,
-        #                          self.cfg.action_repeat, self.cfg.seed)
+
         self.eval_env = self.train_env
         # create replay buffer
         data_specs = (self.train_env.observation_spec(),
@@ -89,6 +86,8 @@ class Workspace:
             self.cfg.save_snapshot, self.cfg.nstep, self.cfg.discount)
         self._replay_iter = None
 
+        assert self.cfg.save_video == False, 'CARLA does not support video recording'
+        
         self.video_recorder = VideoRecorder(
             self.work_dir if self.cfg.save_video else None)
         self.train_video_recorder = TrainVideoRecorder(

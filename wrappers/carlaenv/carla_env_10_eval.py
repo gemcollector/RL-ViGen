@@ -604,11 +604,9 @@ class CarlaEnv10_eval(object):
         # other_cars
         assert self.num_other_cars >= self.num_other_cars_nearby, 'num_other_cars should >= self.num_other_cars_nearby'
         other_vehicle_spawn_point_ids = random.sample(range(len(self.vehicle_spawn_points)), self.num_other_cars - self.num_other_cars_nearby)
-        # while self.vehicle_spawn_point_id in other_vehicle_spawn_point_ids:
-        #     other_vehicle_spawn_point_ids = random.sample(range(len(self.vehicle_spawn_points)), self.num_other_cars)
+
         other_vehicle_transforms = [self.vehicle_spawn_points[i] for i in other_vehicle_spawn_point_ids]
-        # for i in range(len(other_vehicle_transforms)):
-        #     other_vehicle_transforms[i].location.z = 0.22  # in Town02, must start higher than 0.22
+
 
         # other_cars_nearby
         vehicle_waypoint = self.map.get_waypoint(self.vehicle.get_location())
@@ -618,7 +616,6 @@ class CarlaEnv10_eval(object):
         s = next_waypoint.s
 
         for _ in range(self.num_other_cars_nearby):
-            # lane_id = random.choice([-1, -2, -3, -4])
             if vehicle_waypoint.lane_id < 0:
                 lane_id = random.choice([-1, -2, -3, -4])
             elif vehicle_waypoint.lane_id > 0:
@@ -814,22 +811,7 @@ class CarlaEnv10_eval(object):
             pygame.display.flip()
 
         rgbs = []
-        # ims = []
-        # if 'foresight0' in self.cameras:
-        #     ims.append(image_rl)
-        # if 'foresight1' in self.cameras:
-        #     ims.append(image_rl_left)
-        #     ims.append(image_rl_right)
-        # if 'foresight2' in self.cameras:
-        #     ims.append(image_rl_lefter)
-        #     ims.append(image_rl_righter)
-        # if 'backsight' in self.cameras:
-        #     ims.append(image_rl_backsight)
-        # if 'side' in self.cameras:
-        #     ims.append(image_rl_side_left)
-        #     ims.append(image_rl_side_right)
-        # if 'above' in self.cameras:
-        #     ims.append(image_rl_above)
+
 
 
         for im in ims:

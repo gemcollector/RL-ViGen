@@ -9,9 +9,7 @@ import os
 
 os.environ['MKL_SERVICE_FORCE_INTEL'] = '1'
 os.environ['MUJOCO_GL'] = 'egl'
-# set to glfw if trying to render locally with a monitor
-# os.environ['MUJOCO_GL'] = 'glfw'
-# os.environ['EGL_DEVICE_ID'] = '3'
+
 from distutils.dir_util import copy_tree
 import torchvision.transforms as transforms
 from pathlib import Path
@@ -271,13 +269,10 @@ class Workspace:
             self.__dict__[k] = v
 
 
-    def record_gif(self):
 
         step, episode, total_reward = 0, 0, 0
         images = []
         camera_name = 'vil_camera'
-        timestep = self.eval_env.reset()
-        timestep = self.eval_env.reset()
         timestep = self.eval_env.reset()
 
         n_eval_episode = 1
@@ -334,6 +329,9 @@ class Workspace:
 
 
     def record_video_gif(self):
+        """
+        visualize your own trained model in vil_camera view.
+        """
 
         step, episode, total_reward = 0, 0, 0
         images = []
@@ -409,9 +407,8 @@ def main(cfg):
     if snapshot.exists():
         print(f'resuming: {snapshot}')
         workspace.load_snapshot()
-    workspace.record_gif()
     # workspace.record_video_gif()
-    # workspace.eval_adroit()
+    workspace.eval_adroit()
     workspace.del_xml()
 
 

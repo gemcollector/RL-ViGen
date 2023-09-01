@@ -195,6 +195,17 @@ class Weather(object):
     def reset(self):
         if self.init_weather == 'Default':
             self.weather_params = carla.WeatherParameters(sun_altitude_angle=90.)
+        elif 'custom' in self.init_weather:
+            print('============== Weather: {} =========='.format(self.init_weather))
+            self.weather_params = carla.WeatherParameters(cloudiness=self.weather_setting[self.init_weather]['cloudiness'],
+                                                          precipitation=self.weather_setting[self.init_weather]['precipitation'],
+                                                          precipitation_deposits=self.weather_setting[self.init_weather]['precipitation_deposits'],
+                                                          wind_intensity=self.weather_setting[self.init_weather]['wind_intensity'],
+                                                          fog_density=self.weather_setting[self.init_weather]['fog_density'],
+                                                          fog_distance=self.weather_setting[self.init_weather]['fog_distance'],
+                                                          wetness=self.weather_setting[self.init_weather]['wetness'],
+                                                          sun_azimuth_angle=self.weather_setting[self.init_weather]['sun_azimuth_angle'],
+                                                          sun_altitude_angle=self.weather_setting[self.init_weather]['sun_altitude_angle'])
         else:
             print('============== Weather: {} =========='.format(self.init_weather))
             self.weather_params = getattr(carla.WeatherParameters, self.init_weather)

@@ -41,6 +41,9 @@ def make_agent(obs_spec, action_spec, cfg):
 
 class Workspace:
     def __init__(self, cfg):
+        """
+        set up environments and agents.
+        """
         self.work_dir = Path.cwd()
         print(f'workspace: {self.work_dir}')
 
@@ -142,6 +145,7 @@ class Workspace:
 
 
     def robo_eval(self):
+        """evaluate on robosuite."""
         step, episode, total_reward = 0, 0, 0
         eval_until_episode = utils.Until(self.cfg.num_eval_episodes)
 
@@ -189,6 +193,7 @@ class Workspace:
     
     
     def habi_eval(self):
+        """evaluate on habitat."""
         print(f'test_{self.agent_name}_{self.appearance_id}')
         step, episode, total_reward = 0, 0, 0
         eval_until_episode = utils.Until(self.cfg.num_eval_episodes)
@@ -237,6 +242,7 @@ class Workspace:
     
     
     def carla_eval(self):
+        """evaluate on carla."""
         step, episode, total_reward = 0, 0, 0
         eval_until_episode = utils.Until(self.cfg.num_eval_episodes)
         # carla metrics:

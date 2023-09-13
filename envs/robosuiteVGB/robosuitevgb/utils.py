@@ -19,6 +19,9 @@ def omegaconf_to_dict(d: DictConfig) -> Dict:
 
 
 def make_env(task_name: str, seed: int, scene_id: int = 0):
+    """
+    create the robo envs with different parameters.
+    """
     hydra.core.global_hydra.GlobalHydra.instance().clear()
     with initialize(config_path="../cfg"):
         cfg = compose(config_name="robo_config")
@@ -46,6 +49,24 @@ def make_env(task_name: str, seed: int, scene_id: int = 0):
         randomize_camera = False
         cfg_dict['moving_light'] = False
         cfg_dict['except_robot'] = True
+    elif cfg_dict['mode'] == 'eval_easy':
+        cfg_dict['except_robot'] = True
+        randomize_color = randomize_lighting = True
+        randomize_dynamics = False
+        randomize_camera = False
+    elif cfg_dict['mode'] == 'eval_hard':
+        cfg_dict['except_robot'] = False
+        cfg_dict['moving_light'] = True
+        randomize_color = randomize_lighting = True
+        randomize_dynamics = False
+        randomize_camera = False
+    elif cfg_dict['mode'] == 'eval_extreme':
+        cfg_dict['except_robot'] = True
+        cfg_dict['moving_light'] = True
+        cfg_dict['video_background'] = True
+        randomize_color = randomize_lighting = True
+        randomize_dynamics = False
+        randomize_camera = False
     else:
         randomize_color = randomize_lighting = True
         randomize_dynamics = False

@@ -95,8 +95,7 @@ class Workspace:
             raise ValueError(f"env {self.cfg.env} not supported.")
             
 
-        self.video_recorder = VideoRecorder(
-            self.work_dir if self.cfg.save_video else None)
+        self.video_recorder = None
 
 
     @property
@@ -150,7 +149,6 @@ class Workspace:
         for i in tqdm(range(1, 101)):
             episode_reward = 0
             time_step = self.eval_env.reset()
-            self.video_recorder.init(self.eval_env, enabled=(episode == 0))
             while not time_step.last():
                 if self.agent_name == 'pieg':
                     with torch.no_grad():
@@ -163,7 +161,6 @@ class Workspace:
                                                 self.global_step,
                                                 eval_mode=True)
                 time_step = self.eval_env.step(action)
-                self.video_recorder.record(self.eval_env)
                 total_reward += time_step.reward
                 episode_reward += time_step.reward
                 step += 1
@@ -180,7 +177,6 @@ class Workspace:
                     self.eval_env = robo_make(name=self.cfg.task_name, action_repeat=self.cfg.action_repeat, frame_stack=self.cfg.frame_stack, seed=self.cfg.seed, scene_id=count)
 
             episode += 1
-            self.video_recorder.save(f'{self.global_frame}.mp4')
         print(f'Seed {self.cfg.seed} Mean_reward: ', total_reward / episode)
 
         with self.logger.log_and_dump_ctx(self.global_frame, ty='eval') as log:

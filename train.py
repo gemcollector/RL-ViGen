@@ -64,6 +64,7 @@ class Workspace:
         assert env in ['dmc', 'robosuite', 'habitat']
         # create envs
         if env == 'dmc':
+            import wrappers.loco_wrapper as dmc
             self.train_env = dmc.make(self.cfg.task_name, self.cfg.frame_stack,
                                     self.cfg.action_repeat, self.cfg.seed)
             self.eval_env = dmc.make(self.cfg.task_name, self.cfg.frame_stack,
@@ -75,9 +76,6 @@ class Workspace:
             self.eval_env = robo_make(name=self.cfg.task_name, action_repeat=self.cfg.action_repeat, 
                                       frame_stack=self.cfg.frame_stack, seed=self.cfg.seed)
         elif env == 'habitat':
-            # from wrappers.carla_wrapper import carla_make
-            # self.train_env = carla_make(action_repeat=self.cfg.action_repeat)
-            # self.eval_env = self.train_env
             hydra.core.global_hydra.GlobalHydra.instance().clear()
             from wrappers.habi_wrapper import make_habitat_env
             self.train_env = make_habitat_env(name='HabitatImageNav-v0', mode='train', seed=self.cfg.seed, action_repeat=self.cfg.action_repeat)

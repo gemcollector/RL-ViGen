@@ -1,7 +1,7 @@
 save_snapshot=False
 use_wandb=False
 env='carla'
-model_dir=/home/yzc/shared/project/mujoco_manipulation/drqv2/exp_local/carla_model/
+model_dir=/TO/YOUR/PATH
 
 if [ "$env" = "robosuite" ]; then
 task_name='TwoArmPegInHole'

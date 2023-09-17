@@ -1,0 +1,13 @@
+camera:
+  position:
+    original: 0.0
+    easy: 0.12
+    hard: 0.16
+  rotation:
+    original: 0.0
+    easy: 0.12
+    hard: 0.16
+  fov:
+    original: 0.0
+    easy: 10
+    hard: 20

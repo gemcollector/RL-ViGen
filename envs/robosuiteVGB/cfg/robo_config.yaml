@@ -48,14 +48,20 @@ color:
     - gradient  # all texture variation types
   randomize_skybox: true  # by default, randomize skybox too
 
+defaults:
+  - setting: robo_setting
+_camera_:
+  position: original
+  rotation: original
+  fov: original
 camera:
-  camera_names:   # all cameras are randomized
-  randomize_position: false
-  randomize_rotation: false
-  randomize_fovy: false
-  position_perturbation_size: 0.1
-  rotation_perturbation_size: 0.2
-  fovy_perturbation_size: 20.0
+  camera_names: # all cameras are randomized
+  randomize_position: true
+  randomize_rotation: true
+  randomize_fovy: true
+  position_perturbation_size: ${setting.camera.position.${_camera_.position}}
+  rotation_perturbation_size: ${setting.camera.rotation.${_camera_.rotation}}
+  fovy_perturbation_size: ${setting.camera.fov.${_camera_.fov}}
 
 light:
   light_names:   # all lights are randomized

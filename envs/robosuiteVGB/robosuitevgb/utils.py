@@ -5,7 +5,7 @@ import robosuite as suite
 from robosuitevgb.vgb_wrapper import VGBWrapper
 from robosuite.controllers import load_controller_config
 import hydra
-
+import yaml
 
 def omegaconf_to_dict(d: DictConfig) -> Dict:
     """Converts an omegaconf DictConfig to a python Dict, respecting variable interpolation."""
@@ -67,6 +67,18 @@ def make_env(task_name: str, seed: int, scene_id: int = 0):
         randomize_color = randomize_lighting = True
         randomize_dynamics = False
         randomize_camera = False
+    elif cfg_dict['mode'] == 'cam-easy' or cfg_dict['mode'] == 'cam-hard':
+        randomize_color = randomize_lighting = True
+        randomize_dynamics = False
+        randomize_camera = True
+        with open('../../../../envs/robosuiteVGB/cfg/setting/robo_setting.yaml', 'r') as f:
+            xml_content = f.read()
+        xml_dict = yaml.safe_load(xml_content)
+        mode = cfg_dict['mode']
+        difficulty = 'easy' if mode == 'cam-easy' else 'hard'
+
+        for key in ['position', 'rotation', 'fov']:
+            cfg_dict['_camera_'][key] = xml_dict['camera'][key][difficulty]
     else:
         randomize_color = randomize_lighting = True
         randomize_dynamics = False

@@ -190,6 +190,7 @@ The majority of DrQ-v2, DMCGB, VRL3 is licensed under the MIT license. Habitat L
 
 If you find our work useful in your research, please consider citing our work as follows:
 
+## Citations
 
 ```
 @article{yuan2023rl,

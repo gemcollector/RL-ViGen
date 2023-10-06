@@ -1,7 +1,7 @@
 
 
 # RL-ViGen: A Reinforcement Learning Benchmark for Visual Generalization
-[Website](https://gemcollector.github.io/RL-ViGen/) | [Paper]
+[Website](https://gemcollector.github.io/RL-ViGen/) | [Paper](https://arxiv.org/abs/2307.10224)
 
 We have released RL-ViGen -- a **R**einforcement **L**earning Benchmark for **Vi**sual **Gen**eralization. It specifically specifically designs to tackle the visual generalization problem.
 Our benchmark comprises five major task categories, namely, manipulation, navigation, autonomous driving, locomotion, and dexterous manipulation. Concurrently, it encompasses five classes of generalization types: visual appearances, camera views, lighting changes, scene structures, and cross-embodiments. Furthermore, RL-ViGen integrates seven of the most currently favored visual RL and generalization algorithms, solidifying its broad applicability in the field.
@@ -187,3 +187,15 @@ And we also thank the codebase of [VRL3](https://github.com/microsoft/VRL3), [DM
 
 ## License
 The majority of DrQ-v2, DMCGB, VRL3 is licensed under the MIT license. Habitat Lab, dmc2gym, mujoco-py are also licensed under the MIT license. However portions of the project are available under separate license terms: DeepMind,  mj_envs, and mjrl is licensed under the Apache 2.0 license. Gibson based task datasets, the code for generating such datasets, and trained models are distributed with [Gibson Terms of Use](https://storage.googleapis.com/gibson_material/Agreement%20GDS%2006-04-18.pdf) and under [CC BY-NC-SA 3.0 US license](https://creativecommons.org/licenses/by-nc-sa/3.0/us/). CARLA specific assets are distributed under CC-BY License. The ad-rss-lib library compiled and linked by the [RSS Integration build variant](Docs/adv_rss.md) introduces [LGPL-2.1-only License](https://opensource.org/licenses/LGPL-2.1). Unreal Engine 4 follows its [own license terms](https://www.unrealengine.com/en-US/faq).
+
+If you find our work useful in your research, please consider citing our work as follows:
+
+
+```
+@article{yuan2023rl,
+  title={RL-ViGen: A Reinforcement Learning Benchmark for Visual Generalization},
+  author={Yuan, Zhecheng and Yang, Sizhe and Hua, Pu and Chang, Can and Hu, Kaizhe and Wang, Xiaolong and Xu, Huazhe},
+  journal={arXiv preprint arXiv:2307.10224},
+  year={2023}
+}
+```

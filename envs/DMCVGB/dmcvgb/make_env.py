@@ -1,4 +1,5 @@
 from dmcvgb.utils import omegaconf_to_dict
+import hydra
 from hydra import compose, initialize
 import os
 import dmc2gym
@@ -53,7 +54,8 @@ from dmcvgb.wrappers import ColorWrapper, VideoWrapper, FrameStack
 #     return env
 
 
-def make_env(domain_name, task_name, seed):
+def make_env(domain_name, task_name, seed, action_repeat=2, frame_stack=3, type='original', difficulty='easy'):
+    hydra.core.global_hydra.GlobalHydra.instance().clear()
     with initialize(config_path="../cfg"):
         cfg = compose(config_name="config")
         cfg_dict = omegaconf_to_dict(cfg)
@@ -62,6 +64,10 @@ def make_env(domain_name, task_name, seed):
     cfg_dict['taskdef']['domain_name'] = domain_name
     cfg_dict['taskdef']['task_name'] = task_name
     cfg_dict['seed'] = seed
+    cfg_dict['frame_stack'] = frame_stack
+    cfg_dict['action_repeat'] = action_repeat
+    cfg_dict['background']['type'] = type
+    cfg_dict['background']['difficulty'] = difficulty
 
     paths = []
     # is_distracting_cs = cfg_dict['mode'] == 'distracting_cs'

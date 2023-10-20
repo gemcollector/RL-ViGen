@@ -18,9 +18,9 @@ background:
 #light_position: original  # original easy hard
 #light_color: original  # original easy hard
 light:
-  position: hard  # original easy hard
-  intensity: hard  # original easy hard
-  color: hard  # original easy hard
+  position: train  # original easy hard
+  intensity: train  # original easy hard
+  color: train  # original easy hard
 objects_color: original  # original easy hard
 table_texture: original  # original easy hard
 moving_light: original  # original easy hard

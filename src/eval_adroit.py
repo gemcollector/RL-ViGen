@@ -40,6 +40,10 @@ else:
     import dmc
 IS_ADROIT = True if ENV_TYPE == 'adroit' else False
 
+import sys
+import matplotlib.pyplot as plt
+sys.path.append('./algos')
+
 
 
 def make_agent(obs_spec, action_spec, cfg):

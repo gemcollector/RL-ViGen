@@ -34,6 +34,7 @@ feature_dim: 50
 use_wandb: false
 name: curl
 wandb_group: None
+model_dir: None
 
 agent:
   _target_: algos.curl.CURLAgent

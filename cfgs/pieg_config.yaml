@@ -34,6 +34,7 @@ lr: 1e-4
 feature_dim: 50
 name: pieg
 wandb_group: None
+model_dir: none
 
 agent:
   _target_: algos.pieg.PIEGAgent

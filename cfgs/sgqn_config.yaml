@@ -34,6 +34,8 @@ feature_dim: 50
 use_wandb: false
 name: sgqn
 wandb_group: None
+model_dir: none
+
 
 agent:
   _target_: algos.sgqn.SGQNAgent

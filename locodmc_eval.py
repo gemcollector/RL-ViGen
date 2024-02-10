@@ -111,7 +111,7 @@ class Workspace:
         num_episodes = 100
         for i in tqdm(range(num_episodes)):
             time_step = self.eval_env.reset()
-            self.video_recorder.init(self.eval_env, enabled=(episode == 0))
+            self.video_recorder.init(self.eval_env, enabled=True)
             while not time_step.last():
                 if self.agent_name == 'pieg':
                     with torch.no_grad():
@@ -124,45 +124,18 @@ class Workspace:
                                                 self.global_step,
                                                 eval_mode=True)
                 time_step = self.eval_env.step(action)
-                self.video_recorder.record(self.eval_env)
+                self.video_recorder.record_dmc(self.eval_env, video=True)
                 total_reward += time_step.reward
                 step += 1
 
             episode += 1
-            self.video_recorder.save(f'{self.global_frame}.mp4')
+            self.video_recorder.save(f'{i}.mp4')
 
         with self.logger.log_and_dump_ctx(self.global_frame, ty='eval') as log:
             log('episode_reward', total_reward / episode)
             log('episode_length', step * self.cfg.action_repeat / episode)
             # log('episode', self.global_episode)
             log('step', self.global_step)
-
-        episode_reward_standard = total_reward / episode
-        print(f"Episode reward: {episode_reward_standard}")
-        
-        
-    def save_gif(self):
-        step, episode, total_reward = 0, 0, 0
-
-        num_episodes = 100
-        for i in tqdm(range(num_episodes)):
-            images = []
-            time_step = self.eval_env.reset()
-            images.append(time_step.observation[-3:].transpose(1, 2, 0))
-
-            while not time_step.last():
-                with torch.no_grad(), utils.eval_mode(self.agent):
-                    action = self.agent.act(time_step.observation,
-                                            self.global_step,
-                                            eval_mode=True)
-                time_step = self.eval_env.step(action)
-                images.append(time_step.observation[-3:].transpose(1, 2, 0))
-                total_reward += time_step.reward
-                step += 1
-
-            episode += 1
-            imageio.mimsave(f'./{episode}.gif', images)
-
 
         episode_reward_standard = total_reward / episode
         print(f"Episode reward: {episode_reward_standard}")
@@ -194,10 +167,8 @@ def main(cfg):
     if snapshot.exists():
         print(f'resuming: {snapshot}')
         workspace.load_snapshot()
-    if cfg.save_video:
-        workspace.save_gif()
-    else:
-        workspace.eval()
+
+    workspace.eval()
 
 
 if __name__ == '__main__':

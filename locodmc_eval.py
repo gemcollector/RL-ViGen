@@ -48,7 +48,8 @@ class Workspace:
         print(f'agent name: {self.agent_name}')
         work_dir = f'{cfg.model_dir}/{self.agent_name}/{cfg.seed}'
         self.model_work_dir = work_dir
-        self.agent = torch.load('%s/snapshot.pt' % (work_dir), map_location='cuda:0')['agent']
+        agent = torch.load('%s/snapshot.pt' % (work_dir), map_location='cuda:0')
+        self.agent = agent['agent']
         self._global_step = agent['_global_step']
 
 
@@ -81,7 +82,7 @@ class Workspace:
             self.cfg.save_snapshot, self.cfg.nstep, self.cfg.discount)
         self._replay_iter = None
 
-        self.video_recorder =None
+        self.video_recorder = None
         self.train_video_recorder = None
 
 
@@ -138,6 +139,35 @@ class Workspace:
 
         episode_reward_standard = total_reward / episode
         print(f"Episode reward: {episode_reward_standard}")
+        
+        
+    def save_gif(self):
+        step, episode, total_reward = 0, 0, 0
+
+        num_episodes = 100
+        for i in tqdm(range(num_episodes)):
+            images = []
+            time_step = self.eval_env.reset()
+            images.append(time_step.observation[-3:].transpose(1, 2, 0))
+
+            while not time_step.last():
+                with torch.no_grad(), utils.eval_mode(self.agent):
+                    action = self.agent.act(time_step.observation,
+                                            self.global_step,
+                                            eval_mode=True)
+                time_step = self.eval_env.step(action)
+                images.append(time_step.observation[-3:].transpose(1, 2, 0))
+                total_reward += time_step.reward
+                step += 1
+
+            episode += 1
+            imageio.mimsave(f'./{episode}.gif', images)
+
+
+        episode_reward_standard = total_reward / episode
+        print(f"Episode reward: {episode_reward_standard}")
+        
+        
 
 
     def save_snapshot(self):
@@ -164,7 +194,10 @@ def main(cfg):
     if snapshot.exists():
         print(f'resuming: {snapshot}')
         workspace.load_snapshot()
-    workspace.eval()
+    if cfg.save_video:
+        workspace.save_gif()
+    else:
+        workspace.eval()
 
 
 if __name__ == '__main__':

@@ -33,6 +33,19 @@ class VideoRecorder:
             else:
                 frame = env.render()
             self.frames.append(frame)
+            
+    def record_dmc(self, env, video=False):
+        if self.enabled:
+            if hasattr(env, 'physics'):
+                frame = env.physics.render(height=self.render_size,
+                                           width=self.render_size,
+                                           camera_id=0)
+            else:
+                if video:
+                    frame = env._env._env._env._gym_env.env.env.render()
+                else:
+                    frame = env.render()
+            self.frames.append(frame)
 
     def save(self, file_name):
         if self.enabled:

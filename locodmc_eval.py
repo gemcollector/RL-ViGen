@@ -111,7 +111,7 @@ class Workspace:
         num_episodes = 100
         for i in tqdm(range(num_episodes)):
             time_step = self.eval_env.reset()
-            self.video_recorder.init(self.eval_env, enabled=True)
+            self.video_recorder.init_dmc(self.eval_env, enabled=True)
             while not time_step.last():
                 if self.agent_name == 'pieg':
                     with torch.no_grad():

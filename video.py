@@ -23,7 +23,12 @@ class VideoRecorder:
         self.frames = []
         self.enabled = self.save_dir is not None and enabled
         self.record(env)
-
+    
+    def init_dmc(self, env, enabled=True):
+        self.frames = []
+        self.enabled = self.save_dir is not None and enabled
+        self.record_dmc(env, video=True)
+    
     def record(self, env):
         if self.enabled:
             if hasattr(env, 'physics'):

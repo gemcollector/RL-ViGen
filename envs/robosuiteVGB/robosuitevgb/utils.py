@@ -49,12 +49,12 @@ def make_env(task_name: str, seed: int, scene_id: int = 0):
         randomize_camera = False
         cfg_dict['moving_light'] = False
         cfg_dict['except_robot'] = True
-    elif cfg_dict['mode'] == 'eval_easy':
+    elif cfg_dict['mode'] == 'eval-easy':
         cfg_dict['except_robot'] = True
         randomize_color = randomize_lighting = True
         randomize_dynamics = False
         randomize_camera = False
-    elif cfg_dict['mode'] == 'eval_hard':
+    elif cfg_dict['mode'] == 'eval-hard':
         cfg_dict['except_robot'] = False
         cfg_dict['moving_light'] = True
         randomize_color = randomize_lighting = True

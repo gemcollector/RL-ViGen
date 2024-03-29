@@ -154,6 +154,7 @@ class VGBWrapper(gym.core.Env, Wrapper):
         self.observation_space = get_obs_shape_from_dict(self._reformat_obs(obs_dict))
         low, high = self.env.action_spec
         self.action_space = Box(low=low, high=high)
+        self.is_first_episode = True
 
     def _initialize_modders(self):
         if self.randomize_color:
@@ -299,7 +300,9 @@ class VGBWrapper(gym.core.Env, Wrapper):
         # reset counter for doing domain randomization at a particular frequency
         # self.step_counter = 0
         # update sims
-        self._initialize_modders()
+        if self.is_first_episode:
+            self._initialize_modders()
+            self.is_first_episode = False
         for modder in self.modders:
             modder.update_sim(self.env.sim)
         self.randomize_domain()

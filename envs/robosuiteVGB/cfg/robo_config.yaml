@@ -27,8 +27,8 @@ obs_modality:
 #  - state
 
 
-mode: train  # train, eval-easy, eval-hard, eval-extreme  (for texture?)
-scene_id: 0   # 0~9 (for texture?)
+mode: train  # train, eval-easy, eval-medium, eval-hard  (for texture)
+scene_id: 0   # 0~9 (for texture)
 seed: 6
 moving_light: false
 video_background: false

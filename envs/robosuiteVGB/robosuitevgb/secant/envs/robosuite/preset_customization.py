@@ -404,59 +404,59 @@ EVAL_TEX_CANDIDATE = {
         "Dirt",
     ]
     + [f"Custom{i:02d}" for i in range(1, 6)],
-    "eval-hard": ["WoodPanels", "BricksWhite"]
+    "eval-medium": ["WoodPanels", "BricksWhite"]
     + [f"Custom{i:02d}" for i in range(6, 26)],
-    "eval-extreme": [f"Custom{i:02d}" for i in range(26, 41)],
+    "eval-hard": [f"Custom{i:02d}" for i in range(26, 41)],
 }
 
 TASK_RANDOM_SEED = {
     "Door": {
         "train": [100, 100, 100, 100, 100, 100, 100, 100, 100, 100,],
         "eval-easy": [105, 106, 113, 114, 120, 130, 132, 163, 224, 281],
-        "eval-hard": [16, 22, 102, 171, 190, 235, 309, 338, 343, 369],
-        "eval-extreme": [26, 29, 31, 100, 112, 148, 229, 275, 291, 369],
+        "eval-medium": [16, 22, 102, 171, 190, 235, 309, 338, 343, 369],
+        "eval-hard": [26, 29, 31, 100, 112, 148, 229, 275, 291, 369],
         "cam-easy": [100, 100, 100, 100, 100, 100, 100, 100, 100, 100,],
         "cam-hard": [100, 100, 100, 100, 100, 100, 100, 100, 100, 100,],
     },
 # "Door": {
 #         "train": [100, 100, 100,100,100,100, 100, 100,100,100,],
 #         "eval-easy": [100, 100, 100,100,100,100, 100, 100,100,100,],
+#         "eval-medium": [100, 100, 100,100,100,100, 100, 100,100,100,],
 #         "eval-hard": [100, 100, 100,100,100,100, 100, 100,100,100,],
-#         "eval-extreme": [100, 100, 100,100,100,100, 100, 100,100,100,],
 #     },
     "Lift": {  # TODO gvrlb
         "train": [0, 2, 6, 8, 12, 13, 15, 16, 19, 23, 25],
         "eval-easy": [105, 106, 113, 114, 120, 130, 132, 163, 224, 281],
-        "eval-hard": [16, 22, 102, 171, 190, 235, 309, 338, 343, 369],
-        "eval-extreme": [26, 29, 31, 100, 112, 148, 229, 275, 291, 369],
+        "eval-medium": [16, 22, 102, 171, 190, 235, 309, 338, 343, 369],
+        "eval-hard": [26, 29, 31, 100, 112, 148, 229, 275, 291, 369],
         "cam-easy": [0, 2, 6, 8, 12, 13, 15, 16, 19, 23, 25],
         "cam-hard": [0, 2, 6, 8, 12, 13, 15, 16, 19, 23, 25],
     },
     "NutAssembly": {  # TODO gvrlb
         "train": [0, 2, 6, 8, 12, 13, 15, 16, 19, 23, 25],
         "eval-easy": [105, 106, 113, 114, 120, 130, 132, 163, 224, 281],
-        "eval-hard": [16, 22, 102, 171, 190, 235, 309, 338, 343, 369],
-        "eval-extreme": [26, 29, 31, 100, 112, 148, 229, 275, 291, 369],
+        "eval-medium": [16, 22, 102, 171, 190, 235, 309, 338, 343, 369],
+        "eval-hard": [26, 29, 31, 100, 112, 148, 229, 275, 291, 369],
     },
     "TwoArmPegInHole": {
         "train": [0, 1, 3, 6, 7, 22, 14, 16, 17, 19, 11],
         "eval-easy": [26, 35, 57, 95, 101, 108, 130, 271, 324, 359],
-        "eval-hard": [110, 113, 116, 127, 131, 174, 219, 267, 283, 421],
-        "eval-extreme": [11, 101, 108, 122, 132, 145, 166, 327, 349, 429],
+        "eval-medium": [110, 113, 116, 127, 131, 174, 219, 267, 283, 421],
+        "eval-hard": [11, 101, 108, 122, 132, 145, 166, 327, 349, 429],
         "cam-easy": [0, 1, 3, 6, 7, 22, 14, 16, 17, 19, 11],
         "cam-hard": [0, 1, 3, 6, 7, 22, 14, 16, 17, 19, 11],
     },
     "NutAssemblyRound": {
         "train": [0, 1, 4, 6, 8, 9, 15, 16, 20, 22, 23],
         "eval-easy": [36, 57, 66, 82, 107, 110, 113, 252, 310, 369],
-        "eval-hard": [58, 66, 105, 119, 128, 183, 255, 287, 303, 374],
-        "eval-extreme": [12, 22, 42, 67, 77, 91, 192, 195, 255, 279],
+        "eval-medium": [58, 66, 105, 119, 128, 183, 255, 287, 303, 374],
+        "eval-hard": [12, 22, 42, 67, 77, 91, 192, 195, 255, 279],
     },
     "TwoArmLift": {
         "train": [0, 3, 10, 12, 14, 18, 20, 22, 23, 24, 25],
         "eval-easy": [77, 119, 149, 207, 237, 214, 221, 245, 479, 540],
-        "eval-hard": [17, 52, 56, 66, 84, 94, 99, 123, 200, 380],
-        "eval-extreme": [26, 41, 49, 59, 68, 163, 244, 246, 257, 550],
+        "eval-medium": [17, 52, 56, 66, 84, 94, 99, 123, 200, 380],
+        "eval-hard": [26, 41, 49, 59, 68, 163, 244, 246, 257, 550],
     },
 }
 
@@ -771,7 +771,7 @@ TASK_TEX_CANDIDATE = {
                 "lift_object": "Dirt",
             },
         ],
-        "eval-hard": [
+        "eval-medium": [
             {
                 "floor": "Custom23",
                 "wall": "Custom10",
@@ -843,7 +843,7 @@ TASK_TEX_CANDIDATE = {
                 "lift_object": "Custom13",
             },
         ],
-        "eval-extreme": [
+        "eval-hard": [
             {
                 "floor": "Custom35",
                 "wall": "Custom40",
@@ -1269,7 +1269,7 @@ TASK_TEX_CANDIDATE = {
                 "door_handle": "SteelBrushed",
             },
         ],
-        "eval-hard": [
+        "eval-medium": [
             {
                 "floor": "Custom23",
                 "wall": "Custom10",
@@ -1351,7 +1351,7 @@ TASK_TEX_CANDIDATE = {
                 "door_handle": "Metal",
             },
         ],
-        "eval-extreme": [
+        "eval-hard": [
             {
                 "floor": "Custom35",
                 "wall": "Custom40",
@@ -1701,7 +1701,7 @@ TASK_TEX_CANDIDATE = {
                 "ta_pih_stick": "WoodRed",
             },
         ],
-        "eval-hard": [
+        "eval-medium": [
             {
                 "floor": "Custom08",
                 "wall": "Custom11",
@@ -1763,7 +1763,7 @@ TASK_TEX_CANDIDATE = {
                 "ta_pih_stick": "WoodBlue",
             },
         ],
-        "eval-extreme": [
+        "eval-hard": [
             {
                 "floor": "Custom32",
                 "wall": "Custom31",
@@ -1999,7 +1999,7 @@ TASK_TEX_CANDIDATE = {
                 "na_metal2": "Metal",
             },
         ],
-        "eval-hard": [
+        "eval-medium": [
             {
                 "floor": "Custom13",
                 "wall": "Custom16",
@@ -2081,7 +2081,7 @@ TASK_TEX_CANDIDATE = {
                 "na_metal2": "Brass",
             },
         ],
-        "eval-extreme": [
+        "eval-hard": [
             {
                 "floor": "Custom31",
                 "wall": "Custom39",
@@ -2358,7 +2358,7 @@ TASK_TEX_CANDIDATE = {
                 "ta_lift_handle2": "WoodBlue",
             },
         ],
-        "eval-hard": [
+        "eval-medium": [
             {
                 "floor": "Custom23",
                 "wall": "Custom07",
@@ -2450,7 +2450,7 @@ TASK_TEX_CANDIDATE = {
                 "ta_lift_handle2": "WoodRed",
             },
         ],
-        "eval-extreme": [
+        "eval-hard": [
             {
                 "floor": "Custom35",
                 "wall": "Custom40",

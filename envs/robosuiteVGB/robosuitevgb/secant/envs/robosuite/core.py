@@ -86,10 +86,10 @@ def make_robosuite(
                 to RobosuiteAdapter.reset(). The keys of this dictionary should be
                 subset of {custom_texture, custom_color, custom_camera, custom_light}.
                 Check the reset() method in adapter.py for more documentations.
-        mode (str): "train", "eval-easy", "eval-hard" or "eval-extreme". This is used with scene_id.
+        mode (str): "train", "eval-easy", "eval-medium" or "eval-hard". This is used with scene_id.
         scene_id (int or None): If mode == "train", scene_id controls which domain randomization
                 scene to use (scene_id=0 indicates using the original train scene).
-                If mode == "eval-easy", "eval-hard" or "eval-extreme", scene_id controls which eval scene to use.
+                If mode == "eval-easy", "eval-medium" or "eval-hard", scene_id controls which eval scene to use.
         reward_shaping (bool): If True, use dense rewards.
         kwargs: Other arguments to pass to the Robosuite environments.
     """

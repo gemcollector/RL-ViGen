@@ -116,7 +116,7 @@ class VGBWrapper(gym.core.Env, Wrapper):
         self._use_depth = camera_depths
         self._max_episode_steps = episode_length
         self._hard_reset = hard_reset
-        assert mode in ["train", "eval-easy", "eval-hard", "eval-extreme"]
+        assert mode in ["train", "eval-easy", "eval-medium", "eval-hard"]
         self._mode = mode
         self._scene_id = scene_id
         self.video_buf = self.load_video(mode, image_height, image_width)

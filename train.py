@@ -62,6 +62,7 @@ class Workspace:
         # create logger
         self.logger = Logger(self.work_dir, use_tb=self.cfg.use_tb, use_wandb=self.cfg.use_wandb)
         assert env in ['dmc', 'robosuite', 'habitat']
+        self.env_name = env
         # create envs
         if env == 'dmc':
             import wrappers.loco_wrapper as dmc
@@ -128,14 +129,20 @@ class Workspace:
 
         while eval_until_episode(episode):
             time_step = self.eval_env.reset()
-            self.video_recorder.init(self.eval_env, enabled=(episode == 0))
+            if self.env_name == 'dmc':
+                self.video_recorder.init_dmc(self.eval_env, enabled=(episode == 0))
+            else:
+                self.video_recorder.init(self.eval_env, enabled=(episode == 0))
             while not time_step.last():
                 with torch.no_grad(), utils.eval_mode(self.agent):
                     action = self.agent.act(time_step.observation,
                                             self.global_step,
                                             eval_mode=True)
                 time_step = self.eval_env.step(action)
-                self.video_recorder.record(self.eval_env)
+                if self.env_name == 'dmc':
+                    self.video_recorder.record_dmc(self.eval_env, video=True)
+                else:
+                    self.video_recorder.record(self.eval_env)
                 total_reward += time_step.reward
                 step += 1
 

@@ -121,15 +121,8 @@ def robo_make(name, frame_stack=3, action_repeat=2, seed=1, scene_id=0):
     env = ActionDTypeWrapper(env, np.float32)
     env = ActionRepeatWrapper(env, action_repeat)
     env = action_scale.Wrapper(env, minimum=-1.0, maximum=+1.0)
-    # add renderings for clasical tasks
+    # add renderings for classical tasks
     # stack several frames
     env = FrameStackWrapper(env, frame_stack)
     env = ExtendedTimeStepWrapper(env)
     return env
-
-
-
-
-
-
-
